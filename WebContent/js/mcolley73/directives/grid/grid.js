@@ -1,8 +1,10 @@
-gameOfLifeApp.directive('golGrid', ['$log', function($log){
+gameOfLifeApp.directive('golGrid', ['$log', 'gameDataService', function($log, gameDataService){
 	
-	$log.info("golGrid...");
+	//$log.info("golGrid received gameDataService with world of size " + gameDataService.game.world.length + "x" + gameDataService.game.world[0].length);
 	
-	var controller = ['$scope', '$log', function($scope, $log){
+	var controller = ['$scope', '$log', 'gameDataService', function($scope, $log, gameDataService){
+		
+		$scope.gameDataService = gameDataService;
 		
 		$scope.toggleCell = function(event, cell){
 			//$log.info(event);
@@ -11,7 +13,7 @@ gameOfLifeApp.directive('golGrid', ['$log', function($log){
 		
 	}];
 
-	$log.info("returning golGrid.");
+	//$log.info("returning golGrid.");
 	
 	return {
 		controller: controller,

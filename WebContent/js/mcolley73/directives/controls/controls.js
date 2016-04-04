@@ -1,8 +1,10 @@
-gameOfLifeApp.directive('golControls', ['$log', 'gameService', function($log, gameService){
+gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService', function($log, gameService, gameDataService){
 	
-	$log.info("golControls...");
-	
-	var controller = ['$log', '$scope', function($log, $scope){
+	var controller = ['$log', '$scope', 'gameService', 'gameDataService', function($log, $scope, gameService, gameDataService){
+		
+		//$log.info(gameService);
+		
+		$scope.gameService = gameService;
 
 		$scope.startGame = function(){
 			$log.info("startGame()");
@@ -14,9 +16,14 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', function($log, ga
 			gameService.stopGame();
 		};
 		
+		$scope.newGame = function(){
+			$log.info("newGame()");
+			gameService.newGame();
+		}
+		
 	}];
 	
-	$log.info("returning golControls.");
+	//$log.info("returning golControls.");
 	
 	return {
 		controller: controller,

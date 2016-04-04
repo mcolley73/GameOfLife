@@ -1,11 +1,19 @@
 
+.gol-title{
+	font-weight: bold;
+	margin: 10px 0px 10px 0px;
+}
 .button-bar{
-	
+	margin: 5px;
+}
+.button-bar button{
+	margin-right: 10px;
 }
 .cell {
 	display:inline-block;
 	width:17px;
 	height:17px;
+	margin: 1px;
 }
 .cell-value {
 	width: 100%;

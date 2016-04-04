@@ -1,33 +1,53 @@
 gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', function($log, $interval, gameDataService){
 	
-	$log.info("gameService...");
+	$log.info("gameService received gameDataService with world of size " + gameDataService.game.world.length + "x" + gameDataService.game.world[0].length);
 	
 	var gameService = {
 		interval: null,
+		
+		isRunning: function() {
+			return gameDataService.game.running;
+		},
 			
 		startGame: function() {
-			$log.info("service.startGame()");
+			$log.info("gameService.startGame()");
+			$log.info("game was running? " + gameDataService.game.running);
+			gameDataService.game.running = true;
 			interval = $interval(function(){
 				runRules();
 			}, 1000, 0, true);
 		},
 
 		stopGame: function() {
-			$log.info("service.stopGame()");
+			$log.info("gameService.stopGame()");
+			$log.info("game was running? " + gameDataService.game.running);
+			gameDataService.game.running = false;
 			if(interval != null){
 				$interval.cancel(interval);
 				interval = null;
 			}
+		},
+		
+		newGame: function() {
+			$log.info("gameService.newGame()");
+			this.stopGame();
+			gameDataService.reset();
 		}
 	};
 	
 	function runRules(){
-		$log.info("runRules()");
+		//$log.info("runRules()");
 		var world = gameDataService.game.world;
+		var changed = 0;
 		for(var i = 0; i < world.length; i++){
 			for(var j = 0; j < world[i].length; j++){
-				checkRules(i,j);
+				changed += checkRules(i,j);
 			}
+		}
+		gameDataService.game.generationCount++;
+		if(changed==0){
+			$log.info("No changes in generation " + gameDataService.game.generationCount + ".")
+			gameService.stopGame();
 		}
 	}
 	
@@ -42,13 +62,16 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		var world = gameDataService.game.world;
 		var neighborCount = countNeighbors(row, column);
 		
+		var changed = 0;
 		if(world[row][column].alive){
 			if(neighborCount < 2){
 				// RULE 1
 				world[row][column].alive = false;
+				changed++;
 			} else if (neighborCount > 3){
 				// RULE 3
 				world[row][column].alive = false;
+				changed++;
 			} else{
 				// RULE 2
 			}
@@ -56,16 +79,24 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			if(neighborCount==3){
 				// RULE 4
 				world[row][column].alive = true;
+				changed++;
 			}
 		}
+		return changed;
 	}
 	
 	function countNeighbors(row, column){
 		var count = 0;
+		count += checkNeighbor(row-1, column-1);
 		count += checkNeighbor(row-1, column);
-		count += checkNeighbor(row+1, column);
+		count += checkNeighbor(row-1, column+1);
+		
 		count += checkNeighbor(row, column-1);
 		count += checkNeighbor(row, column+1);
+
+		count += checkNeighbor(row+1, column-1);
+		count += checkNeighbor(row+1, column);
+		count += checkNeighbor(row+1, column+1);
 		return count;
 	}
 	
@@ -81,8 +112,6 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		}
 		return livingNeighbor;
 	}
-	
-	$log.info("returning gameService.");
 	
 	return gameService;
 	

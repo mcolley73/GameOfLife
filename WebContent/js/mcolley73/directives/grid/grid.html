@@ -1,5 +1,5 @@
 
-<div ng-repeat="row in game.world track by $index">
+<div ng-repeat="row in gameDataService.game.world track by $index">
 	<div ng-repeat="cell in row track by $index" 
 		ng-click="toggleCell($event, cell)" ng-model="cell"
 		class="cell {{cell.alive ? 'alive' : 'dead'}}">
