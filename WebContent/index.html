@@ -1,8 +1,26 @@
-<html ng-app>
+<html ng-app="gameOfLifeApp">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="./game-of-life.css" />
+		
+		<!-- app -->
+		<script src="./js/mcolley73/GameOfLife.js"></script>
+		
+		<!-- services -->
+		<script src="./js/mcolley73/services/gameService.js"></script>
+		
+		<!-- directives -->
+		<script src="./js/mcolley73/directives/grid/grid.js"></script>
+		<script src="./js/mcolley73/directives/controls/controls.js"></script>
 	</head>
-	<body>
-		<p>No game {{'yet' + '!'}}</p>
+	
+	<body ng-controller="gameController">
+	
+		<p>Game of {{'life' + '!'}}</p>
+		
+		<gol-grid></gol-grid>
+		<gol-controls></gol-controls>
+		
 	</body>
 </html>

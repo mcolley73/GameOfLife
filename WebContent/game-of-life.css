@@ -1,0 +1,19 @@
+
+.button-bar{
+	
+}
+.cell {
+	display:inline-block;
+	width:17px;
+	height:17px;
+}
+.cell-value {
+	width: 100%;
+	text-align: center;
+}
+.alive {
+	background-color: #008800;
+}
+.dead {
+	background-color: #dd6666;
+}
