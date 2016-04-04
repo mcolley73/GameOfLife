@@ -22,7 +22,7 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			$log.info("gameService.stopGame()");
 			$log.info("game was running? " + gameDataService.game.running);
 			gameDataService.game.running = false;
-			if(interval != null){
+			if(interval!==undefined && interval != null){
 				$interval.cancel(interval);
 				interval = null;
 			}
@@ -32,22 +32,37 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			$log.info("gameService.newGame()");
 			this.stopGame();
 			gameDataService.reset();
+		},
+		
+		clear: function() {
+			$log.info("gameService.clear()");
+			this.stopGame();
+			gameDataService.clear();
 		}
 	};
 	
 	function runRules(){
 		//$log.info("runRules()");
 		var world = gameDataService.game.world;
-		var changed = 0;
+		var shouldChange = 0;
 		for(var i = 0; i < world.length; i++){
 			for(var j = 0; j < world[i].length; j++){
-				changed += checkRules(i,j);
+				shouldChange += checkRules(i,j);
 			}
 		}
 		gameDataService.game.generationCount++;
-		if(changed==0){
+		if(shouldChange==0){
 			$log.info("No changes in generation " + gameDataService.game.generationCount + ".")
 			gameService.stopGame();
+		}else{
+			for(var i = 0; i < world.length; i++){
+				for(var j = 0; j < world[i].length; j++){
+					if(world[i][j].shouldChange){
+						world[i][j].alive = !world[i][j].alive;
+						world[i][j].shouldChange = false;
+					}
+				}
+			}	
 		}
 	}
 	
@@ -62,27 +77,27 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		var world = gameDataService.game.world;
 		var neighborCount = countNeighbors(row, column);
 		
-		var changed = 0;
+		var shouldChange = 0;
 		if(world[row][column].alive){
 			if(neighborCount < 2){
 				// RULE 1
-				world[row][column].alive = false;
-				changed++;
+				world[row][column].shouldChange = true;
+				shouldChange++;
 			} else if (neighborCount > 3){
 				// RULE 3
-				world[row][column].alive = false;
-				changed++;
+				world[row][column].shouldChange = true;
+				shouldChange++;
 			} else{
 				// RULE 2
 			}
 		}else{
 			if(neighborCount==3){
 				// RULE 4
-				world[row][column].alive = true;
-				changed++;
+				world[row][column].shouldChange = true;
+				shouldChange++;
 			}
 		}
-		return changed;
+		return shouldChange;
 	}
 	
 	function countNeighbors(row, column){

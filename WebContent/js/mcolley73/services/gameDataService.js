@@ -1,7 +1,7 @@
 gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	
-	var width = 20;
-	var height = 20;
+	var width = 40;
+	var height = 40;
 	var world = createArray(width, height);
 	var game = {
 		world: world,
@@ -15,7 +15,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 			arr[i] = [];
 			for(var j = 0; j < height; j++){
 				arr[i][j] = {
-					alive: secretOfLife()
+					alive: secretOfLife(),
+					shouldChange: false
 				}
 			}
 		}
@@ -26,6 +27,17 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 		for(var i = 0; i < width; i++){
 			for(var j = 0; j < height; j++){
 				world[i][j].alive = secretOfLife();
+				world[i][j].shouldChange = false;
+			}
+		}
+		game.generationCount = 0;
+	}
+	
+	function clear(){
+		for(var i = 0; i < width; i++){
+			for(var j = 0; j < height; j++){
+				world[i][j].alive = false;
+				world[i][j].shouldChange = false;
 			}
 		}
 		game.generationCount = 0;
@@ -37,7 +49,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	
 	return {
 		game: game,
-		reset: reset
+		reset: reset,
+		clear: clear
 	};
 	
 }]);
