@@ -42,3 +42,15 @@ body {
 	width: 60px;
 	margin-right: 10px;
 }
+
+.variables-bar{
+	margin-top: 5px;
+}
+.dimension{
+	width: 40px;
+}
+
+.spacer{
+	width: 30px;
+	display: inline-block;
+}

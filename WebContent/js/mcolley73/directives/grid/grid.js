@@ -14,7 +14,7 @@ gameOfLifeApp.directive('golGrid', ['$log', 'gameDataService', function($log, ga
 		$scope.mouseoverCell = function(event, cell){
 			//$log.info(event);
 			if(event.buttons > 0){
-				cell.alive = !cell.alive;
+				cell.alive = true;
 			}
 		};
 		

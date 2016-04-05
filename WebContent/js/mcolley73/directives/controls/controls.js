@@ -27,6 +27,19 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 			gameService.clear();
 		}
 		
+		$scope.pauseAndResume = function(){
+			$log.info("pauseAndResume()");
+			if(gameService.isRunning()){
+				gameService.stopGame();
+				gameService.startGame();
+			}
+		}
+		
+		$scope.rebuildWorld = function(){
+			$log.info("rebuildWorld()");
+			gameService.rebuild();
+		}
+		
 	}];
 	
 	//$log.info("returning golControls.");

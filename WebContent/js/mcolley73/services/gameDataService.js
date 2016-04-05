@@ -1,12 +1,19 @@
 gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	
-	var width = 60;
-	var height = 30;
+	var width = 20;
+	var height = 20;
+	var gestation = 1000;
+	
 	var world = createArray(width, height);
 	var game = {
 		world: world,
+		gestation: gestation,
 		generationCount: 0,
-		running: false
+		running: false,
+		dimensions: {
+			height: height,
+			width: width
+		}
 	};
 	
 	function createArray(width, height){

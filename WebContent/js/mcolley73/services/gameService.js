@@ -15,12 +15,15 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			gameDataService.game.running = true;
 			interval = $interval(function(){
 				runRules();
-			}, 1000, 0, true);
+			}, gameDataService.game.gestation, 0, true);
 		},
 
 		stopGame: function() {
 			$log.info("gameService.stopGame()");
 			$log.info("game was running? " + gameDataService.game.running);
+			if(!gameDataService.game.running){
+				return;
+			}
 			gameDataService.game.running = false;
 			if(interval!==undefined && interval != null){
 				$interval.cancel(interval);
@@ -38,6 +41,12 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			$log.info("gameService.clear()");
 			this.stopGame();
 			gameDataService.clear();
+		},
+		
+		rebuild: function() {
+			$log.info("gameService.clear()");
+			this.stopGame();
+			// TODO finish
 		}
 	};
 	
