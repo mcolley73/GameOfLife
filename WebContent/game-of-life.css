@@ -1,13 +1,19 @@
 
+html {
+}
+body {
+	padding: 10px;
+	margin: 10px;
+}
+
 .gol-title{
 	font-weight: bold;
-	margin: 10px 0px 10px 0px;
+	margin: 10px 0px 10px 5px;
 }
-.button-bar{
-	margin: 5px;
-}
-.button-bar button{
-	margin-right: 10px;
+
+.gol-grid{
+	background-color: #bbb;
+	display: inline-block;	
 }
 .cell {
 	cursor: pointer;
@@ -24,5 +30,15 @@
 	background-color: #008800;
 }
 .dead {
-	background-color: #dd8888;
+	background-color: #dddddd;
+}
+
+.button-bar{
+	display: inline-block;
+	margin: 10px 0px 5px 5px;
+}
+.button-bar button{
+	right: 0px;
+	width: 60px;
+	margin-right: 10px;
 }
