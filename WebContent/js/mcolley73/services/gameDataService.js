@@ -1,13 +1,20 @@
+'use strict';
+
 gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	
-	var width = 20;
-	var height = 20;
-	var gestation = 1000;
+	//$log.info($location.search());
 	
-	var world = createArray(width, height);
+	//$log.info(queryStringService.getParam('height'));
+	//$log.info(queryStringService.getParam('width'));
+	
+	var width = 40; // (queryStringService.getParam('width') || 20);
+	var height = 25; // (queryStringService.getParam('height') || 20);
+	var gestation = 1000;
+	var oddsOfLife = .5;
+	
 	var game = {
-		world: world,
 		gestation: gestation,
+		oddsOfLife: oddsOfLife,
 		generationCount: 0,
 		running: false,
 		dimensions: {
@@ -15,6 +22,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 			width: width
 		}
 	};
+	var world = createArray(width, height);
+	game.world = world;
 	
 	function createArray(width, height){
 		var arr = [];
@@ -51,7 +60,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	}
 
 	function secretOfLife(){
-		return (Math.random() < .5);
+		return (Math.random() < game.oddsOfLife);
 	}
 	
 	return {
