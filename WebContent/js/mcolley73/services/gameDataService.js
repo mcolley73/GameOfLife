@@ -7,10 +7,10 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	//$log.info(queryStringService.getParam('height'));
 	//$log.info(queryStringService.getParam('width'));
 	
-	var width = 40; // (queryStringService.getParam('width') || 20);
-	var height = 25; // (queryStringService.getParam('height') || 20);
-	var gestation = 1000;
-	var oddsOfLife = .5;
+	var width = 60; // (queryStringService.getParam('width') || 20);
+	var height = 30; // (queryStringService.getParam('height') || 20);
+	var gestation = 750;
+	var oddsOfLife = .4;
 	
 	var game = {
 		gestation: gestation,

@@ -17,6 +17,11 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 			gameService.stopGame();
 		};
 		
+		$scope.stepGame = function(){
+			$log.info("stepGame()");
+			gameService.stepGame();
+		};
+		
 		$scope.newGame = function(){
 			$log.info("newGame()");
 			gameService.newGame();

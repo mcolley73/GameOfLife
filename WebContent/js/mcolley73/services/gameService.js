@@ -31,6 +31,15 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			}
 		},
 		
+		stepGame: function() {
+			$log.info("gameService.stepGame()");
+			$log.info("game was running? " + gameDataService.game.running);
+			if(gameDataService.game.running){
+				return;
+			}
+			runRules();
+		},
+		
 		newGame: function() {
 			$log.info("gameService.newGame()");
 			this.stopGame();

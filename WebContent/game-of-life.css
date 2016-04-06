@@ -6,9 +6,19 @@ body {
 	margin: 10px;
 }
 
+.gol-content{
+	margin: auto;
+	text-align: center;
+}
+.gol-wrapper{
+	display: inline-block;
+	padding: 5px;
+	text-align: left;
+}
 .gol-title{
 	font-weight: bold;
 	margin: 10px 0px 10px 5px;
+	text-align: left;
 }
 
 .gol-grid{
@@ -35,7 +45,9 @@ body {
 
 .button-bar{
 	display: inline-block;
-	margin: 10px 0px 5px 5px;
+	margin: 10px 5px 5px 5px;
+	text-align: left;
+	left: 5px;
 }
 .button-bar button{
 	right: 0px;
