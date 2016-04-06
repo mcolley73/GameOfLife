@@ -8,7 +8,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 	//$log.info(queryStringService.getParam('width'));
 	
 	var width = 60; // (queryStringService.getParam('width') || 20);
-	var height = 36; // (queryStringService.getParam('height') || 20);
+	var height = 35; // (queryStringService.getParam('height') || 20);
 //	var width = 60; // (queryStringService.getParam('width') || 20);
 //	var height = 10; // (queryStringService.getParam('height') || 20);
 	
@@ -21,6 +21,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 		generationCount: 0,
 		running: false,
 		previewing: false,
+		gridlines: false,
 		dimensions: {
 			height: height,
 			width: width

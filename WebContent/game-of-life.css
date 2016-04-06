@@ -25,6 +25,23 @@ body {
 	background-color: #bbb;
 	display: inline-block;	
 }
+
+.vert-gridline{
+	border-left: none;
+}
+.horiz-gridline{
+	border-bottom: none;
+}
+.gridlines .vert-gridline{
+	border-left: 1px solid black !important;
+}
+.gridlines .horiz-gridline{
+	border-bottom: 1px solid black !important;
+}
+.gridlines .horiz-gridline:last-child{
+	border-bottom: none !important;
+}
+
 .cell {
 	cursor: pointer;
 	display:inline-block;
