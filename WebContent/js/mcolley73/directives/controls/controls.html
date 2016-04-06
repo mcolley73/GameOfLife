@@ -1,21 +1,40 @@
 
 <div style="height: 0px; width: 100%;"></div>
 <div class="button-bar">
-	<button ng-click="startGame();" ng-disabled="gameDataService.game.running">Start</button>
-	<button ng-click="pauseGame();" ng-disabled="!gameDataService.game.running">Pause</button>
-	<button ng-click="stepGame();" ng-disabled="gameDataService.game.running">Step</button>
-	<button ng-click="newGame();" ng-disabled="gameDataService.game.running">Random</button>
-	<button ng-click="clear();" ng-disabled="gameDataService.game.running">Clear</button>
-	<div style="display:inline-block;margin-top:3px;">Generation {{gameDataService.game.generationCount}}, Running: {{gameDataService.game.running}}</div>
+	<div class="player-controls">
+		<button ng-click="startGame();" ng-disabled="gameDataService.game.running">Start</button>
+		<button ng-click="pauseGame();" ng-disabled="!gameDataService.game.running">Pause</button>
+		<button ng-click="stepGame();" ng-disabled="gameDataService.game.running">Step</button>
+		<input ng-checked="gameDataService.game.previewing" name="preview" type="checkbox" 
+			ng-mousedown="previewGeneration();" ng-mouseup="removePreview();" 
+			ng-disabled="gameDataService.game.running"></input>
+		<label ng-mousedown="previewGeneration()" ng-mouseup="removePreview()" for="preview"
+			class="{{gameDataService.game.running ? 'disabled-font' : ''}}">Preview</label>
+		<div class="variables-bar">
+			<input type="text" class="dimension" ng-model="gameDataService.game.gestation" ng-blur="pauseAndResume()"></input> ms gestation
+		</div>
+	</div>
 	
-	<div class="variables-bar">
-		<!-- 
+	<span class="spacer"></span>
+	<span class="spacer"></span>
+
+	<div class="generator-controls">
+		<button ng-click="newGame();" ng-disabled="gameDataService.game.running">Random</button>
+		<button ng-click="clear();" ng-disabled="gameDataService.game.running">Clear</button>
+		<div class="variables-bar">
+			<input type="text" class="dimension" ng-disabled="gameDataService.game.running" ng-model="gameDataService.game.oddsOfLife"></input><span class="{{gameDataService.game.running ? 'disabled-font' : ''}}"> odds of life</span>
+		</div>
+	</div>
+	
+	<span class="spacer"></span>
+	<span class="spacer"></span>
+	<div class="summary-controls">
+		<span>Generation {{gameDataService.game.generationCount}}, Running: {{gameDataService.game.running}}</span>
+	</div>
+	
+	<!-- 
 		<input type="text" class="dimension" ng-model="gameDataService.game.dimensions.width" ng-blur="rebuildWorld()"></input>w&nbsp;x&nbsp;
 		<input type="text" class="dimension" ng-model="gameDataService.game.dimensions.height" ng-blur="rebuildWorld()"></input>h
-		 -->
-		<input type="text" class="dimension" ng-disabled="gameDataService.game.running" ng-model="gameDataService.game.oddsOfLife"></input> odds of life
-		<span class="spacer"></span>
-		<input type="text" class="dimension" ng-model="gameDataService.game.gestation" ng-blur="pauseAndResume()"></input> ms gestation
-	</div>
+	 -->
 
 </div>

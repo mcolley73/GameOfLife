@@ -28,19 +28,27 @@ body {
 .cell {
 	cursor: pointer;
 	display:inline-block;
-	width:15px;
-	height:15px;
+	width:13px;
+	height:13px;
 	margin: 1px;
 }
 .cell-value {
 	width: 100%;
 	text-align: center;
 }
+
 .alive {
 	background-color: #008800;
 }
 .dead {
 	background-color: #dddddd;
+}
+.preview.dead {
+	background-color: #008800;
+}
+.preview.alive {
+	background-color: #dddddd;
+	opacity: .3
 }
 
 .button-bar{
@@ -52,17 +60,46 @@ body {
 .button-bar button{
 	right: 0px;
 	width: 60px;
-	margin-right: 10px;
+	margin-left: 10px;
+}
+.button-bar button:first-child{
+	margin-left: 0px;
+}
+
+.player-controls{
+	padding: 8px;
+	border-radius: 5px;
+	display:inline-block;
+	border:1px solid #ccc;
+}
+.generator-controls{
+	padding: 8px;
+	border-radius: 5px;
+	display:inline-block;
+	border:1px solid #ccc;
+}
+.summary-controls{
+	padding: 8px;
+	border-radius: 5px;
+	display:inline-block;
+	vertical-align:top;
+	border:1px solid #ccc;
 }
 
 .variables-bar{
-	margin-top: 5px;
+	margin-top: 10px;
 }
 .dimension{
 	width: 40px;
 }
 
 .spacer{
-	width: 30px;
+	width: 5px;
+	height: 1.2em;
 	display: inline-block;
+	vertical-align: top;
+}
+
+.disabled-font{
+	color: #ccc;
 }

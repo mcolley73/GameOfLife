@@ -22,6 +22,15 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 			gameService.stepGame();
 		};
 		
+		$scope.previewGeneration = function(){
+			$log.info("previewGeneration()");
+			gameService.previewGeneration();
+		};
+		$scope.removePreview = function(){
+			$log.info("removePreview()");
+			gameService.removePreview();
+		};
+		
 		$scope.newGame = function(){
 			$log.info("newGame()");
 			gameService.newGame();

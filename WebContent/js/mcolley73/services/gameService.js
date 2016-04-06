@@ -11,7 +11,6 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			
 		startGame: function() {
 			$log.info("gameService.startGame()");
-			$log.info("game was running? " + gameDataService.game.running);
 			gameDataService.game.running = true;
 			interval = $interval(function(){
 				runRules();
@@ -20,7 +19,6 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 
 		stopGame: function() {
 			$log.info("gameService.stopGame()");
-			$log.info("game was running? " + gameDataService.game.running);
 			if(!gameDataService.game.running){
 				return;
 			}
@@ -33,11 +31,27 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		
 		stepGame: function() {
 			$log.info("gameService.stepGame()");
-			$log.info("game was running? " + gameDataService.game.running);
 			if(gameDataService.game.running){
 				return;
 			}
 			runRules();
+		},
+		
+		previewGeneration: function() {
+			$log.info("gameService.previewGeneration()");
+			if(gameDataService.game.running){
+				return;
+			}
+			previewRules();
+			gameDataService.game.previewing = true;
+		},
+		removePreview: function() {
+			$log.info("gameService.removePreview()");
+			if(gameDataService.game.running){
+				return;
+			}
+			gameDataService.removePreviews();
+			gameDataService.game.previewing = false;
 		},
 		
 		newGame: function() {
@@ -60,7 +74,16 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 	};
 	
 	function runRules(){
-		//$log.info("runRules()");
+		var shouldChange = identifyChanges();
+		applyChanges(shouldChange, true);
+	}
+	
+	function previewRules(){
+		var shouldChange = identifyChanges();
+		applyChanges(shouldChange, false);
+	}
+	
+	function identifyChanges(){
 		var world = gameDataService.game.world;
 		var shouldChange = 0;
 		for(var i = 0; i < world.length; i++){
@@ -68,20 +91,31 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 				shouldChange += checkRules(i,j);
 			}
 		}
-		gameDataService.game.generationCount++;
-		if(shouldChange==0){
+		return shouldChange;
+	}
+	
+	function applyChanges(shouldChangeCount, commitChange){
+		var world = gameDataService.game.world;
+		if(commitChange){
+			gameDataService.game.generationCount++;
+		}
+		if(shouldChangeCount==0){
 			$log.info("No changes in generation " + gameDataService.game.generationCount + ".")
 			gameService.stopGame();
 		}else{
 			for(var i = 0; i < world.length; i++){
 				for(var j = 0; j < world[i].length; j++){
 					if(world[i][j].shouldChange){
-						world[i][j].alive = !world[i][j].alive;
-						world[i][j].shouldChange = false;
+						if(commitChange){
+							world[i][j].alive = !world[i][j].alive;
+							world[i][j].shouldChange = false;
+						}else{
+							world[i][j].preview = true;
+						}
 					}
 				}
 			}	
-		}
+		}		
 	}
 	
 /**
