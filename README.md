@@ -5,4 +5,6 @@
 * Preview a single Generation
 * Modify the gestation period between generations
 * Randomly generate worlds of varying initial population density
+* Click to toggle individual cells
+* Click and Drag to spawn life with the stroke of a mouse 
  
