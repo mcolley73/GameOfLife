@@ -70,7 +70,17 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 			$log.info("gameService.clear()");
 			this.stopGame();
 			// TODO finish
+		}, 
+		
+		createSample: function(sample) {
+			$log.info("createSample(sample)");
+			gameDataService.createSample(sample);
+		},
+		
+		generateJson: function() {
+			gameDataService.generateSampleWorldJson();
 		}
+		
 	};
 	
 	function runRules(){

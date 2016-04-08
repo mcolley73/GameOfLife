@@ -1,11 +1,10 @@
-gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService', function($log, gameService, gameDataService){
+gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService', 'sampleWorldService', function($log, gameService, gameDataService, sampleWorldService){
 	
-	var controller = ['$log', '$scope', 'gameService', 'gameDataService', function($log, $scope, gameService, gameDataService){
-		
-		//$log.info(gameService);
+	var controller = ['$log', '$scope', 'gameService', 'gameDataService', 'sampleWorldService', function($log, $scope, gameService, gameDataService, sampleWorldService){
 		
 		$scope.gameService = gameService;
 		$scope.gameDataService = gameDataService;
+		$scope.sampleWorldService = sampleWorldService;
 
 		$scope.startGame = function(){
 			$log.info("startGame()");
@@ -54,9 +53,20 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 			gameService.rebuild();
 		}
 		
+		$scope.updateSampleWorld = function(){
+			$log.info("updateSampleWorld()");
+			if(gameDataService.game.selectedSample == null){
+				return;
+			}
+			gameService.createSample(gameDataService.game.selectedSample);
+		}
+		
+		$scope.generateJson = function(){
+			$log.info("generateJson()");
+			gameService.generateJson();
+		}
+		
 	}];
-	
-	//$log.info("returning golControls.");
 	
 	return {
 		controller: controller,

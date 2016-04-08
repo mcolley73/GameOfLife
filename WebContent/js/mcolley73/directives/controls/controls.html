@@ -21,11 +21,18 @@
 	<div class="generator-controls">
 		<button ng-click="newGame();" ng-disabled="gameDataService.game.running">Random</button>
 		<button ng-click="clear();" ng-disabled="gameDataService.game.running">Clear</button>
+		<button ng-click="generateJson();" ng-disabled="gameDataService.game.running">JSON</button>
 		<div class="variables-bar">
 			<input type="text" class="dimension" ng-disabled="gameDataService.game.running" ng-model="gameDataService.game.oddsOfLife"></input><span class="{{gameDataService.game.running ? 'disabled-font' : ''}}"> odds of life</span>
 			<span class="spacer"></span>
 			<input ng-model="gameDataService.game.gridlines" name="gridlines" type="checkbox"></input>
 			<label ng-click="gameDataService.game.gridlines = !gameDataService.game.gridlines" for="gridlines">Gridlines</label>
+		</div>
+		<div class="variables-bar">
+			<select ng-model="gameDataService.game.selectedSample" ng-options="world.name for world in sampleWorldService.getSamples()" 
+				ng-disabled="gameDataService.game.running" ng-change="updateSampleWorld()">
+				<option value="">Select a sample world</option>
+			</select>
 		</div>
 	</div>
 	

@@ -54,6 +54,18 @@ body {
 	text-align: center;
 }
 
+.cell.gridlines {
+	margin: 0px !important;
+}
+.cell.horiz-gridline {
+	margin-bottom: 0px !important;
+	margin-top: 0px !important;
+}
+.cell.vert-gridline {
+	margin-left: 0px !important;
+	margin-right: 0px !important;	
+}
+
 .alive {
 	background-color: #008800;
 }
@@ -84,6 +96,7 @@ body {
 }
 
 .player-controls{
+	vertical-align: top;
 	padding: 8px;
 	border-radius: 5px;
 	display:inline-block;

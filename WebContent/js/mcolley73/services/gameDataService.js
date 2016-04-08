@@ -1,6 +1,6 @@
 'use strict';
 
-gameOfLifeApp.factory('gameDataService', ['$log', function($log){
+gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function($log, sampleWorldService){
 	
 	//$log.info($location.search());
 	
@@ -22,26 +22,57 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 		running: false,
 		previewing: false,
 		gridlines: false,
+		selectedSample: -1,
 		dimensions: {
 			height: height,
 			width: width
 		}
 	};
-	var world = createArray(width, height);
+	
+	var world = createArray(width, height, true);
+	
+	//var world = createArray(width, height, false);
+	//applyArray(sampleWorldService.getSamples()[1], world);
+	
 	game.world = world;
 	
-	function createArray(width, height){
+	function createArray(width, height, andGenerate){
 		var arr = [];
 		for(var i = 0; i < height; i++){
 			arr[i] = [];
 			for(var j = 0; j < width; j++){
 				arr[i][j] = {
-					alive: secretOfLife(),
+					alive: (andGenerate ? secretOfLife() : false),
 					shouldChange: false
 				}
 			}
 		}
 		return arr;
+	}
+	
+	function createSample(sampleWorld){
+		clear();
+		var sampleCell;
+		for(var i = 0; i < sampleWorld.livingCells.length; i++){
+			sampleCell = sampleWorld.livingCells[i];
+			game.world[sampleCell.y][sampleCell.x].alive = true;
+			game.world[sampleCell.y][sampleCell.x].shouldChange = false;
+		}
+	}
+	
+	function generateSampleWorldJson(){
+		var livingCells = [];
+		var sampleWorld = {
+			"livingCells": livingCells
+		};
+		for(var i = 0; i < height; i++){
+			for(var j = 0; j < width; j++){
+				if(world[i][j].alive){
+					livingCells.push({"x":j, "y":i});
+				}
+			}
+		}
+		$log.info(JSON.stringify(sampleWorld));
 	}
 	
 	function reset(){
@@ -81,6 +112,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', function($log){
 		game: game,
 		reset: reset,
 		clear: clear,
+		createSample: createSample,
+		generateSampleWorldJson: generateSampleWorldJson,
 		removePreviews: removePreviews
 	};
 	
