@@ -17,7 +17,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	
 	var oddsOfLife = .35;
 	
-	var showRecentDeath = false;
+	var showRecentDeath = true;
 	
 	var game = {
 		gestation: gestation,
@@ -93,9 +93,11 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	function clear(){
 		for(var i = 0; i < height; i++){
 			for(var j = 0; j < width; j++){
-				world[i][j].alive = false;
-				world[i][j].shouldChange = false;
-				world[i][j].justDied = false;
+				var cell = world[i][j];
+				cell.alive = false;
+				cell.shouldChange = false;
+				cell.justDied = false;
+				cell.mostlyDead = false;
 			}
 		}
 		game.generationCount = 0;

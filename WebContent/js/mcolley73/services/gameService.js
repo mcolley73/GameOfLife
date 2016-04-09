@@ -126,15 +126,22 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		if(cell.shouldChange){
 			commitChangeOrPreview(commitChange, cell);
 		}else{
-			cell.justDied = false;
+			handleNoChange(cell);
 		}
 	}
 	
 	function commitChangeOrPreview(commitChange, cell){
 		if(commitChange){
 			cell.alive = !cell.alive;
-			if(gameDataService.showRecentDeath && !cell.alive){
+			if(!gameDataService.showRecentDeath){
+				cell.justDied = false;
+				cell.mostlyDead = false;
+			}
+			else if(gameDataService.showRecentDeath && !cell.alive){
 				cell.justDied = true;
+			}else if(gameDataService.showRecentDeath && cell.alive){
+				cell.justDied = false;
+				cell.mostlyDead = false;
 			}else{
 				cell.justDied = false;
 			}
@@ -142,6 +149,21 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		}else{
 			cell.preview = true;
 			cell.justDied = false;
+		}
+	}
+	
+	function handleNoChange(cell){
+		if(!gameDataService.showRecentDeath){
+			cell.justDied = false;
+			cell.mostlyDead = false;
+		}else{
+			// if dead cell didn't come back to life...
+			if(cell.justDied){
+				cell.mostlyDead = true;		// now it's even deader
+			}else if(cell.mostlyDead){
+				cell.mostlyDead = false;	// or it's long dead and forgotten
+			}
+			cell.justDied = false;			// either way it's no longer just died
 		}
 	}
 	

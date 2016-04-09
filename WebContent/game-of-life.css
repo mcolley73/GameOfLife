@@ -80,8 +80,14 @@ body {
 	opacity: .3
 }
 .dead.just-died{
-	background-color: #84bb84;
-	opacity: .6;
+	/*background-color: #28B028;*/
+	background-color: #008800;
+	opacity: .40;
+}
+.dead.mostly-dead{
+	/*background-color: #50D850;*/
+	background-color: #008800;
+	opacity: .15;
 }
 
 .button-bar{
