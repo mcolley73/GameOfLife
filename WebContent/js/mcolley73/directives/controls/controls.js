@@ -66,6 +66,10 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 			gameService.generateJson();
 		}
 		
+		$scope.gestationChange = function(){
+    		$scope.pauseAndResume();
+		}
+		
 	}];
 	
 	return {

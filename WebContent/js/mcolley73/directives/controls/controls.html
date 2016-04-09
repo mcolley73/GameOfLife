@@ -10,8 +10,12 @@
 			ng-disabled="gameDataService.game.running"></input>
 		<label ng-mousedown="previewGeneration()" ng-mouseup="removePreview()" for="preview"
 			class="{{gameDataService.game.running ? 'disabled-font' : ''}}">Preview</label>
+			
 		<div class="variables-bar">
-			<input type="text" class="dimension" ng-model="gameDataService.game.gestation" ng-blur="pauseAndResume()"></input> ms gestation
+			<span>gestation</span>
+			<select ng-model="gameDataService.game.gestation" 
+				ng-options="gestationOption for gestationOption in gameDataService.gestationOptions" ng-change="gestationChange();">
+			</select>
 		</div>
 	</div>
 	

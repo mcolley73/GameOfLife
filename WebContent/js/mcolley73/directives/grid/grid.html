@@ -3,7 +3,7 @@
 	<div ng-repeat="row in gameDataService.game.world track by $index" class="{{$index > 0 && ($index+1) % 5 == 0 ? 'horiz-gridline' : ''}}">
 		<div ng-repeat="cell in row track by $index" 
 			ng-click="toggleCell($event, cell)" ng-mouseover="mouseoverCell($event, cell)" ng-model="cell"
-			class="cell {{cell.alive ? 'alive' : 'dead'}} {{cell.preview ? 'preview' : ''}} {{$index > 0 && $index % 5 == 0 ? 'vert-gridline' : ''}}">
+			class="cell {{cell.alive ? 'alive' : 'dead'}} {{cell.preview ? 'preview' : ''}} {{cell.justDied ? 'just-died' : ''}} {{$index > 0 && $index % 5 == 0 ? 'vert-gridline' : ''}}">
 			<div class="cell-value"><!-- {{cell.alive ? 1 : 0}} --></div>
 		</div>
 	</div>

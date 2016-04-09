@@ -79,6 +79,10 @@ body {
 	background-color: #dddddd;
 	opacity: .3
 }
+.dead.just-died{
+	background-color: #84bb84;
+	opacity: .6;
+}
 
 .button-bar{
 	display: inline-block;
@@ -88,7 +92,7 @@ body {
 }
 .button-bar button{
 	right: 0px;
-	width: 60px;
+	width: 70px;
 	margin-left: 10px;
 }
 .button-bar button:first-child{

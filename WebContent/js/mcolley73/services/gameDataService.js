@@ -13,7 +13,11 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 //	var height = 10; // (queryStringService.getParam('height') || 20);
 	
 	var gestation = 400;
+	var gestationOptions = [50,100,150,200,250,300,350,400,450,500,600,700,800,900,1000,1100,1250,1500,1750,2000,3000,4000,5000];
+	
 	var oddsOfLife = .35;
+	
+	var showRecentDeath = false;
 	
 	var game = {
 		gestation: gestation,
@@ -91,6 +95,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 			for(var j = 0; j < width; j++){
 				world[i][j].alive = false;
 				world[i][j].shouldChange = false;
+				world[i][j].justDied = false;
 			}
 		}
 		game.generationCount = 0;
@@ -114,7 +119,9 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		clear: clear,
 		createSample: createSample,
 		generateSampleWorldJson: generateSampleWorldJson,
-		removePreviews: removePreviews
+		removePreviews: removePreviews,
+		gestationOptions: gestationOptions,
+		showRecentDeath: showRecentDeath
 	};
 	
 }]);

@@ -118,10 +118,18 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 					if(world[i][j].shouldChange){
 						if(commitChange){
 							world[i][j].alive = !world[i][j].alive;
+							if(gameDataService.showRecentDeath && !world[i][j].alive){
+								world[i][j].justDied = true;
+							}else{
+								world[i][j].justDied = false;
+							}
 							world[i][j].shouldChange = false;
 						}else{
 							world[i][j].preview = true;
+							world[i][j].justDied = false;
 						}
+					}else{
+						world[i][j].justDied = false;
 					}
 				}
 			}	
