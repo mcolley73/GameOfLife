@@ -7,41 +7,33 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		$scope.sampleWorldService = sampleWorldService;
 
 		$scope.startGame = function(){
-			$log.info("startGame()");
 			gameService.startGame();
 		};
 		
 		$scope.pauseGame = function(){
-			$log.info("pauseGame()");
 			gameService.stopGame();
 		};
 		
 		$scope.stepGame = function(){
-			$log.info("stepGame()");
 			gameService.stepGame();
 		};
 		
 		$scope.previewGeneration = function(){
-			$log.info("previewGeneration()");
 			gameService.previewGeneration();
 		};
 		$scope.removePreview = function(){
-			$log.info("removePreview()");
 			gameService.removePreview();
 		};
 		
 		$scope.newGame = function(){
-			$log.info("newGame()");
 			gameService.newGame();
 		}
 		
 		$scope.clear = function(){
-			$log.info("clear()");
 			gameService.clear();
 		}
 		
 		$scope.pauseAndResume = function(){
-			$log.info("pauseAndResume()");
 			if(gameService.isRunning()){
 				gameService.stopGame();
 				gameService.startGame();
@@ -49,12 +41,10 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 		
 		$scope.rebuildWorld = function(){
-			$log.info("rebuildWorld()");
 			gameService.rebuild();
 		}
 		
 		$scope.updateSampleWorld = function(){
-			$log.info("updateSampleWorld()");
 			if(gameDataService.game.selectedSample == null){
 				return;
 			}
@@ -62,7 +52,6 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 		
 		$scope.generateJson = function(){
-			$log.info("generateJson()");
 			gameService.generateJson();
 		}
 		

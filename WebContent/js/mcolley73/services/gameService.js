@@ -115,25 +115,34 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		}else{
 			for(var i = 0; i < world.length; i++){
 				for(var j = 0; j < world[i].length; j++){
-					if(world[i][j].shouldChange){
-						if(commitChange){
-							world[i][j].alive = !world[i][j].alive;
-							if(gameDataService.showRecentDeath && !world[i][j].alive){
-								world[i][j].justDied = true;
-							}else{
-								world[i][j].justDied = false;
-							}
-							world[i][j].shouldChange = false;
-						}else{
-							world[i][j].preview = true;
-							world[i][j].justDied = false;
-						}
-					}else{
-						world[i][j].justDied = false;
-					}
+					var cell = world[i][j];
+					applyCellChanges(commitChange, cell);
 				}
 			}	
 		}		
+	}
+	
+	function applyCellChanges(commitChange, cell){
+		if(cell.shouldChange){
+			commitChangeOrPreview(commitChange, cell);
+		}else{
+			cell.justDied = false;
+		}
+	}
+	
+	function commitChangeOrPreview(commitChange, cell){
+		if(commitChange){
+			cell.alive = !cell.alive;
+			if(gameDataService.showRecentDeath && !cell.alive){
+				cell.justDied = true;
+			}else{
+				cell.justDied = false;
+			}
+			cell.shouldChange = false;
+		}else{
+			cell.preview = true;
+			cell.justDied = false;
+		}
 	}
 	
 /**
