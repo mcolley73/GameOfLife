@@ -3,24 +3,24 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="./game-of-life.css" />
-		
+
 		<!-- app -->
 		<script src="./js/mcolley73/GameOfLife.js"></script>
-		
+
 		<!-- services -->
 		<script src="./js/mcolley73/services/sampleWorldService.js"></script>
 		<script src="./js/mcolley73/services/gameDataService.js"></script>
 		<script src="./js/mcolley73/services/gameService.js"></script>
-		
+
 		<!-- directives -->
 		<script src="./js/mcolley73/directives/grid/grid.js"></script>
 		<script src="./js/mcolley73/directives/controls/controls.js"></script>
 	</head>
-	
+
 	<body ng-controller="gameController">
 		<div class="gol-content">
 			<div class="gol-wrapper">
-				<div class="gol-title">Game of {{'life' + '!'}}</div>
+				<h3 class="gol-title">Colley's Game of {{'life' + '!'}}&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_new">(see Conway's)</a></h3>
 				<gol-grid></gol-grid>
 				<gol-controls></gol-controls>
 			</div>

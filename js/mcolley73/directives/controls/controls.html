@@ -5,29 +5,25 @@
 		<button ng-click="startGame();" ng-disabled="gameDataService.game.running">Start</button>
 		<button ng-click="pauseGame();" ng-disabled="!gameDataService.game.running">Pause</button>
 		<button ng-click="stepGame();" ng-disabled="gameDataService.game.running">Step</button>
-		<input ng-checked="gameDataService.game.previewing" name="preview" type="checkbox" 
-			ng-mousedown="previewGeneration();" ng-mouseup="removePreview();" 
+		<input ng-checked="gameDataService.game.previewing" name="preview" type="checkbox"
+			ng-mousedown="previewGeneration();" ng-mouseup="removePreview();"
 			ng-disabled="gameDataService.game.running"></input>
 		<label ng-mousedown="previewGeneration()" ng-mouseup="removePreview()" for="preview"
 			class="{{gameDataService.game.running ? 'disabled-font' : ''}}">Preview</label>
-			
+
 		<div class="variables-bar">
-			<span>gestation</span>
-			<select ng-model="gameDataService.game.gestation" 
+			<span>gestation(ms)</span>
+			<select ng-model="gameDataService.game.gestation"
 				ng-options="gestationOption for gestationOption in gameDataService.gestationOptions" ng-change="gestationChange();">
 			</select>
 			<span class="spacer"></span><span class="spacer"></span>
-			
-			<!-- 
-			<input ng-model="gameDataService.showRecentDeath" name="showRecentDeath" type="checkbox"></input>
-			<label ng-click="gameDataService.showRecentDeath = !gameDataService.showRecentDeath" for="showRecentDeath">tracers</label>
-			 -->
-			<select ng-model="gameDataService.colorScheme" 
+			<span>colors</span>
+			<select ng-model="gameDataService.colorScheme"
 				ng-options="colorScheme.name for colorScheme in gameDataService.colorSchemeOptions">
 			</select>
 		</div>
 	</div>
-	
+
 	<span class="spacer"></span>
 	<span class="spacer"></span>
 
@@ -42,22 +38,16 @@
 			<label ng-click="gameDataService.game.gridlines = !gameDataService.game.gridlines" for="gridlines">gridlines</label>
 		</div>
 		<div class="variables-bar">
-			<select ng-model="gameDataService.game.selectedSample" ng-options="world.name for world in sampleWorldService.getSamples()" 
+			<select ng-model="gameDataService.game.selectedSample" ng-options="world.name for world in sampleWorldService.getSamples()"
 				ng-disabled="gameDataService.game.running" ng-change="updateSampleWorld()">
 				<option value="">Select a sample world</option>
 			</select>
 		</div>
 	</div>
-	
+
 	<span class="spacer"></span>
 	<span class="spacer"></span>
 	<div class="summary-controls">
 		<span>Generation {{gameDataService.game.generationCount}}, Running: {{gameDataService.game.running}}</span>
 	</div>
-	
-	<!-- 
-		<input type="text" class="dimension" ng-model="gameDataService.game.dimensions.width" ng-blur="rebuildWorld()"></input>w&nbsp;x&nbsp;
-		<input type="text" class="dimension" ng-model="gameDataService.game.dimensions.height" ng-blur="rebuildWorld()"></input>h
-	 -->
-
 </div>
