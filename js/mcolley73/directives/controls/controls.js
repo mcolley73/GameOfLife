@@ -53,11 +53,19 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 
 		$scope.generateJson = function(){
-			gameService.generateJson();
+			gameDataService.jsonData = gameService.generateJson();
+			gameDataService.jsonViewerVisible = true;
 		}
 
 		$scope.gestationChange = function(){
     		$scope.pauseAndResume();
+		}
+
+		$scope.undoIconClass = function(){
+			if(gameDataService.game.running || gameDataService.game.selectedSample == -1){
+				return 'disabled-font';
+			}
+			return '';
 		}
 
 	}];

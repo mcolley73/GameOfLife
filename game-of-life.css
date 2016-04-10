@@ -67,6 +67,9 @@ body {
 	margin-right: 0px !important;
 }
 
+.greens a{
+	color: #008800;
+}
 .greens .alive {
 	background-color: #008800;
 }
@@ -98,6 +101,9 @@ body {
 	opacity: .20;
 }
 
+.reds a{
+	color: #880000;
+}
 .reds .alive {
 	background-color: #880000;
 }
@@ -129,6 +135,9 @@ body {
 	opacity: .20;
 }
 
+.oranges a{
+	color: #C9760B;
+}
 .oranges .alive {
 	background-color: #C9760B;
 }
@@ -160,6 +169,9 @@ body {
 	opacity: .20;
 }
 
+.blues a{
+	color: #000088;
+}
 .blues .alive {
 	background-color: #000088;
 }
@@ -191,6 +203,9 @@ body {
 	opacity: .20;
 }
 
+.purples a{
+	color: #760BC9;
+}
 .purples .alive {
 	background-color: #760BC9;
 }
@@ -222,6 +237,9 @@ body {
 	opacity: .20;
 }
 
+.rainbow a{
+	color: #C9170B;
+}
 .rainbow .alive {
 	background-color: #C9170B;
 }
@@ -285,11 +303,39 @@ body {
 	border:1px solid #ccc;
 }
 
+.gol-fa-icon{
+	margin-left:5px;
+	cursor: pointer;
+}
+
 .variables-bar{
 	margin-top: 10px;
 }
 .dimension{
 	width: 40px;
+}
+
+.json-viewer-wrapper{
+	position:absolute;
+	right:10px;
+	top:10px;
+	padding:5px;
+	overflow-y:scroll;
+	border: 1px solid #777;
+	border-radius: 5px;
+	-webkit-box-shadow: -11px 9px 18px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: -11px 9px 18px 0px rgba(0,0,0,0.75);
+	box-shadow: -11px 9px 18px 0px rgba(0,0,0,0.75);
+}
+.json-viewer{
+	height:inherit;
+	width:500px;
+	height:350px;
+}
+.json-viewer-wrapper .button-bar{
+	display: block;
+	margin-top: 0px;
+	margin-left: 0px;
 }
 
 .spacer{
@@ -300,5 +346,6 @@ body {
 }
 
 .disabled-font{
-	color: #ccc;
+	color: #ccc !important;
+	cursor: default;
 }

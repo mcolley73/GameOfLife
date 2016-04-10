@@ -1,6 +1,7 @@
 <html ng-app="gameOfLifeApp">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 		<link rel="stylesheet" type="text/css" href="./game-of-life.css" />
 
@@ -15,14 +16,18 @@
 		<!-- directives -->
 		<script src="./js/mcolley73/directives/grid/grid.js"></script>
 		<script src="./js/mcolley73/directives/controls/controls.js"></script>
+		<script src="./js/mcolley73/directives/jsonViewer/jsonViewer.js"></script>
+
+		<title>Colley's Game of Life</title>
 	</head>
 
-	<body ng-controller="gameController">
+	<body ng-controller="gameController" >
 		<div class="gol-content">
-			<div class="gol-wrapper">
+			<div class="gol-wrapper {{gameDataService.colorScheme.class}}">
 				<h3 class="gol-title">Colley's Game of {{'life' + '!'}}&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_new">(see Conway's)</a></h3>
 				<gol-grid></gol-grid>
 				<gol-controls></gol-controls>
+				<gol-json-viewer></gol-json-viewer>
 			</div>
 		</div>
 	</body>

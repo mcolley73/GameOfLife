@@ -12,6 +12,9 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 
 	var showRecentDeath = false;
 
+	var jsonData = '';
+	var jsonViewerVisible = false;
+
 	var colorSchemeOptions = [
 	    {"class":"greens","name":"Green"},
 	    {"class":"greens tracers","name":"Green Tracers"},
@@ -74,6 +77,9 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	function generateSampleWorldJson(){
 		var livingCells = [];
 		var sampleWorld = {
+			"name": "generated-"+new Date().getTime(),
+			"height": world.length,
+			"width": world[0].length,
 			"livingCells": livingCells
 		};
 		for(var i = 0; i < height; i++){
@@ -83,7 +89,9 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 				}
 			}
 		}
-		$log.info(JSON.stringify(sampleWorld));
+		//$log.info(JSON.stringify(sampleWorld));
+
+		return JSON.stringify(sampleWorld);
 	}
 
 	function reset(){
@@ -134,7 +142,10 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 
 		showRecentDeath: showRecentDeath,
 		colorScheme: colorScheme,
-		colorSchemeOptions: colorSchemeOptions
+		colorSchemeOptions: colorSchemeOptions,
+
+		jsonData: jsonData,
+		jsonViewerVisible: jsonViewerVisible
 	};
 
 }]);

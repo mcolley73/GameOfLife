@@ -1,0 +1,12 @@
+
+<div class="json-viewer-wrapper alive" ng-show="gameDataService.jsonViewerVisible">
+
+  <div class="button-bar">
+    <button ng-click="copyJson();">Copy</button>
+    <button ng-click="closeJsonViewer();">Close</button>
+  </div>
+
+  <textarea class="json-viewer">{{gameDataService.jsonData}}</textarea>
+
+
+</div>

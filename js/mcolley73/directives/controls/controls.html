@@ -42,6 +42,7 @@
 				ng-disabled="gameDataService.game.running" ng-change="updateSampleWorld()">
 				<option value="">Select a sample world</option>
 			</select>
+			<a ng-click="updateSampleWorld()" class="gol-fa-icon fa fa-undo {{undoIconClass()}}"></a>
 		</div>
 	</div>
 
