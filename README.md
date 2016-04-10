@@ -10,4 +10,4 @@
 * Click and Drag to spawn life with the stroke of a mouse
 * Toggle gridlines to ease freehand drawing
 
-[live demo](http://mcolley73.github.io/GameOfLife/)
+[LIVE DEMO HERE](http://mcolley73.github.io/GameOfLife/)
