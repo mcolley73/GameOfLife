@@ -8,5 +8,6 @@
 * Load sample worlds or generate JSON for more sample worlds
 * Click to toggle individual cells
 * Click and Drag to spawn life with the stroke of a mouse
-* Toggle gridlines to ease freehand drawing 
- 
+* Toggle gridlines to ease freehand drawing
+
+[live demo](http://mcolley73.github.io/GameOfLife/)
