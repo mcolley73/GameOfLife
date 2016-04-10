@@ -46,7 +46,7 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 
 		$scope.updateSampleWorld = function(){
-			if(gameDataService.game.selectedSample == null){
+			if(gameDataService.game.selectedSample == null || gameService.isRunning()){
 				return;
 			}
 			gameService.createSample(gameDataService.game.selectedSample);
