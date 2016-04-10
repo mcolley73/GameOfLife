@@ -128,6 +128,37 @@ body {
 	opacity: .20;
 }
 
+.oranges .alive {
+	background-color: #C9760B;
+}
+.oranges .dead {
+	background-color: #dddddd;
+}
+.oranges .preview.dead {
+	background-color: #C9760B;
+}
+.oranges .preview.alive {
+	background-color: #dddddd;
+	opacity: .3
+}
+
+.oranges.tracers .been-dead-1{
+	background-color: #C9760B;
+	opacity: .80;
+}
+.oranges.tracers .been-dead-2{
+	background-color: #C9760B;
+	opacity: .60;
+}
+.oranges.tracers .been-dead-3{
+	background-color: #C9760B;
+	opacity: .40;
+}
+.oranges.tracers .been-dead-4{
+	background-color: #C9760B;
+	opacity: .20;
+}
+
 .blues .alive {
 	background-color: #000088;
 }
