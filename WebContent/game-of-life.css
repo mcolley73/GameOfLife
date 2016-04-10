@@ -66,35 +66,155 @@ body {
 	margin-right: 0px !important;	
 }
 
-.alive {
+.greens .alive {
 	background-color: #008800;
 }
-.dead {
+.greens .dead {
 	background-color: #dddddd;
 }
-.preview.dead {
+.greens .preview.dead {
 	background-color: #008800;
 }
-.preview.alive {
+.greens .preview.alive {
 	background-color: #dddddd;
 	opacity: .3
 }
 
-.been-dead-1{
+.greens.tracers .been-dead-1{
 	background-color: #008800;
 	opacity: .80;
 }
-.been-dead-2{
+.greens.tracers .been-dead-2{
 	background-color: #008800;
 	opacity: .60;
 }
-.been-dead-3{
+.greens.tracers .been-dead-3{
 	background-color: #008800;
 	opacity: .40;
 }
-.been-dead-4{
+.greens.tracers .been-dead-4{
 	background-color: #008800;
 	opacity: .20;
+}
+
+.reds .alive {
+	background-color: #880000;
+}
+.reds .dead {
+	background-color: #dddddd;
+}
+.reds .preview.dead {
+	background-color: #880000;
+}
+.reds .preview.alive {
+	background-color: #dddddd;
+	opacity: .3
+}
+
+.reds.tracers .been-dead-1{
+	background-color: #880000;
+	opacity: .80;
+}
+.reds.tracers .been-dead-2{
+	background-color: #880000;
+	opacity: .60;
+}
+.reds.tracers .been-dead-3{
+	background-color: #880000;
+	opacity: .40;
+}
+.reds.tracers .been-dead-4{
+	background-color: #880000;
+	opacity: .20;
+}
+
+.blues .alive {
+	background-color: #000088;
+}
+.blues .dead {
+	background-color: #dddddd;
+}
+.blues .preview.dead {
+	background-color: #000088;
+}
+.blues .preview.alive {
+	background-color: #dddddd;
+	opacity: .3
+}
+
+.blues.tracers .been-dead-1{
+	background-color: #000088;
+	opacity: .60;
+}
+.blues.tracers .been-dead-2{
+	background-color: #000088;
+	opacity: .45;
+}
+.blues.tracers .been-dead-3{
+	background-color: #000088;
+	opacity: .35;
+}
+.blues.tracers .been-dead-4{
+	background-color: #000088;
+	opacity: .20;
+}
+
+.purples .alive {
+	background-color: #760BC9;
+}
+.purples .dead {
+	background-color: #dddddd;
+}
+.purples .preview.dead {
+	background-color: #760BC9;
+}
+.purples .preview.alive {
+	background-color: #dddddd;
+	opacity: .3
+}
+
+.purples.tracers .been-dead-1{
+	background-color: #760BC9;
+	opacity: .60;
+}
+.purples.tracers .been-dead-2{
+	background-color: #760BC9;
+	opacity: .45;
+}
+.purples.tracers .been-dead-3{
+	background-color: #760BC9;
+	opacity: .35;
+}
+.purples.tracers .been-dead-4{
+	background-color: #760BC9;
+	opacity: .20;
+}
+
+.rainbow .alive {
+	background-color: #C9170B;
+}
+.rainbow .dead {
+	background-color: #dddddd;
+}
+.rainbow .preview.dead {
+	background-color: #C9170B;
+}
+.rainbow .preview.alive {
+	background-color: #dddddd;
+	opacity: .3
+}
+
+.rainbow .been-dead-1{
+	background-color: #C9760B;
+}
+.rainbow .been-dead-2{
+	background-color: #BDC90B;
+}
+.rainbow .been-dead-3{
+	background-color: #0BC917;
+}
+.rainbow .been-dead-4{
+	background-color: #170BC9;
 }
 
 .button-bar{

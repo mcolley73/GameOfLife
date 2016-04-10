@@ -12,6 +12,19 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	
 	var showRecentDeath = false;
 	
+	var colorSchemeOptions = [
+	    {"class":"greens","name":"Green"},
+	    {"class":"greens tracers","name":"Green Tracers"},
+	    {"class":"reds","name":"Red"},
+	    {"class":"reds tracers","name":"Red Tracers"},
+	    {"class":"blues","name":"Blue"},
+	    {"class":"blues tracers","name":"Blue Tracers"},
+	    {"class":"purples","name":"Purple"},
+	    {"class":"purples tracers","name":"Purple Tracers"},
+	    {"class":"rainbow","name":"Rainbow"}
+	];
+	var colorScheme = colorSchemeOptions[0];
+	
 	var game = {
 		gestation: gestation,
 		oddsOfLife: oddsOfLife,
@@ -116,7 +129,10 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		generateSampleWorldJson: generateSampleWorldJson,
 		removePreviews: removePreviews,
 		gestationOptions: gestationOptions,
-		showRecentDeath: showRecentDeath
+		
+		showRecentDeath: showRecentDeath,
+		colorScheme: colorScheme,
+		colorSchemeOptions: colorSchemeOptions
 	};
 	
 }]);

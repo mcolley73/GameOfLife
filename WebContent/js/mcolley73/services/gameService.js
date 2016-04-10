@@ -133,32 +133,20 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 	function commitChangeOrPreview(commitChange, cell){
 		if(commitChange){
 			cell.alive = !cell.alive;
-			if(!gameDataService.showRecentDeath || cell.alive){
+			if(cell.alive){
 				cell.beenDead = -1;
 			}else{
 				cell.beenDead = 1;
 			}
-//			else if(gameDataService.showRecentDeath && !cell.alive){
-//				cell.beenDead = 1;
-//			}else if(gameDataService.showRecentDeath && cell.alive){
-//				cell.beenDead = -1;
-//			}else{
-//				//cell.justDied = false;
-//			}
 			cell.shouldChange = false;
 		}else{
 			cell.preview = true;
-			//cell.justDied = false;
 		}
 	}
 	
 	function handleNoChange(cell){
-		if(!gameDataService.showRecentDeath){
-			cell.beenDead = -1;
-		}else{
-			if(!cell.alive && cell.beenDead > -1){
-				cell.beenDead++;
-			}
+		if(!cell.alive && cell.beenDead > -1){
+			cell.beenDead++;
 		}
 	}
 	

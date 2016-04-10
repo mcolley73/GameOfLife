@@ -17,8 +17,14 @@
 				ng-options="gestationOption for gestationOption in gameDataService.gestationOptions" ng-change="gestationChange();">
 			</select>
 			<span class="spacer"></span><span class="spacer"></span>
+			
+			<!-- 
 			<input ng-model="gameDataService.showRecentDeath" name="showRecentDeath" type="checkbox"></input>
 			<label ng-click="gameDataService.showRecentDeath = !gameDataService.showRecentDeath" for="showRecentDeath">tracers</label>
+			 -->
+			<select ng-model="gameDataService.colorScheme" 
+				ng-options="colorScheme.name for colorScheme in gameDataService.colorSchemeOptions">
+			</select>
 		</div>
 	</div>
 	
