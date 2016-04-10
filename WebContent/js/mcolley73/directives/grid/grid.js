@@ -18,6 +18,14 @@ gameOfLifeApp.directive('golGrid', ['$log', 'gameDataService', function($log, ga
 			}
 		};
 		
+		$scope.beenDeadClass = function(cell){
+			if(cell.beenDead > 0 && cell.beenDead < 5){
+				return 'been-dead-' + cell.beenDead;
+			}else{
+				return '';
+			}
+		}
+		
 	}];
 
 	//$log.info("returning golGrid.");

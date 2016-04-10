@@ -2,22 +2,15 @@
 
 gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function($log, sampleWorldService){
 	
-	//$log.info($location.search());
-	
-	//$log.info(queryStringService.getParam('height'));
-	//$log.info(queryStringService.getParam('width'));
-	
 	var width = 60; // (queryStringService.getParam('width') || 20);
 	var height = 35; // (queryStringService.getParam('height') || 20);
-//	var width = 60; // (queryStringService.getParam('width') || 20);
-//	var height = 10; // (queryStringService.getParam('height') || 20);
 	
 	var gestation = 400;
 	var gestationOptions = [50,100,150,200,250,300,350,400,450,500,600,700,800,900,1000,1100,1250,1500,1750,2000,3000,4000,5000];
 	
 	var oddsOfLife = .35;
 	
-	var showRecentDeath = true;
+	var showRecentDeath = false;
 	
 	var game = {
 		gestation: gestation,
@@ -34,10 +27,6 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	};
 	
 	var world = createArray(width, height, true);
-	
-	//var world = createArray(width, height, false);
-	//applyArray(sampleWorldService.getSamples()[1], world);
-	
 	game.world = world;
 	
 	function createArray(width, height, andGenerate){
@@ -47,7 +36,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 			for(var j = 0; j < width; j++){
 				arr[i][j] = {
 					alive: (andGenerate ? secretOfLife() : false),
-					shouldChange: false
+					shouldChange: false,
+					beenDead: -1
 				}
 			}
 		}
@@ -59,8 +49,10 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		var sampleCell;
 		for(var i = 0; i < sampleWorld.livingCells.length; i++){
 			sampleCell = sampleWorld.livingCells[i];
-			game.world[sampleCell.y][sampleCell.x].alive = true;
-			game.world[sampleCell.y][sampleCell.x].shouldChange = false;
+			var cell = game.world[sampleCell.y][sampleCell.x]; 
+			cell.alive = true;
+			cell.shouldChange = false;
+			cell.beenDead = -1;
 		}
 	}
 	
@@ -82,9 +74,11 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	function reset(){
 		for(var i = 0; i < height; i++){
 			for(var j = 0; j < width; j++){
-				world[i][j].alive = secretOfLife();
-				world[i][j].shouldChange = false;
-				world[i][j].preview = false;
+				var cell = world[i][j];
+				cell.alive = secretOfLife();
+				cell.shouldChange = false;
+				cell.preview = false;
+				cell.beenDead = -1;
 			}
 		}
 		game.generationCount = 0;
@@ -96,8 +90,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 				var cell = world[i][j];
 				cell.alive = false;
 				cell.shouldChange = false;
-				cell.justDied = false;
-				cell.mostlyDead = false;
+				cell.beenDead = -1;
 			}
 		}
 		game.generationCount = 0;

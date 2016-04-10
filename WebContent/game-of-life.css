@@ -79,15 +79,22 @@ body {
 	background-color: #dddddd;
 	opacity: .3
 }
-.dead.just-died{
-	/*background-color: #28B028;*/
+
+.been-dead-1{
+	background-color: #008800;
+	opacity: .80;
+}
+.been-dead-2{
+	background-color: #008800;
+	opacity: .60;
+}
+.been-dead-3{
 	background-color: #008800;
 	opacity: .40;
 }
-.dead.mostly-dead{
-	/*background-color: #50D850;*/
+.been-dead-4{
 	background-color: #008800;
-	opacity: .15;
+	opacity: .20;
 }
 
 .button-bar{
