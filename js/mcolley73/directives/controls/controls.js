@@ -62,7 +62,7 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 
 		$scope.undoIconClass = function(){
-			if(gameDataService.game.running || gameDataService.game.selectedSample == -1){
+			if(gameDataService.game.running || gameDataService.game.selectedSample === ""){
 				return 'disabled-font';
 			}
 			return '';

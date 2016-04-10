@@ -37,7 +37,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		running: false,
 		previewing: false,
 		gridlines: false,
-		selectedSample: -1,
+		selectedSample: "",
 		dimensions: {
 			height: height,
 			width: width
