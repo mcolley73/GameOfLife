@@ -1,13 +1,21 @@
 gameOfLifeApp.service('rulesService', ['$log', 'gameDataService', function($log, gameDataService){
 
-  var conway = parseRulesString('B3/S23', 'Conway\'s');
-  var b38s238 = parseRulesString('B38/S238');
-  var b34s235 = parseRulesString('B34/S235');
-  var coral = parseRulesString('B3/S45678', 'Coral');
-  var maze = parseRulesString('B3/S12345', 'Maze');
-  var walledCities = parseRulesString('B45678/S2345', 'Walled Cities');
+  var conway =            parseRulesString('B3/S23', 'Conway\'s');
+  var replicator =        parseRulesString('B1357/S1357', 'Replicator');
+  var liveFreeOrDie =     parseRulesString('B2/S0', 'Live Free or Die');
+  var lifeWithoutDeath =  parseRulesString('B3/S012345678', 'Life Without Death');
+  var longLife =          parseRulesString('B345/S5', 'Long Life');
+  var highLife =          parseRulesString('B36/S23', 'High Life');
+  var pseudoLife =        parseRulesString('B357/S238', 'Pseudo Life');
+  var serviettes =        parseRulesString('B234/S', 'Serviettes');
+  var coral =             parseRulesString('B3/S45678', 'Coral');
+  var maze =              parseRulesString('B3/S12345', 'Maze');
+  var walledCities =      parseRulesString('B45678/S2345', 'Walled Cities');
 
-  var rulesOptions = [conway, b38s238, b34s235, coral, maze, walledCities];
+  var rulesOptions = [conway, replicator, liveFreeOrDie, lifeWithoutDeath,
+                        longLife, highLife, pseudoLife, serviettes, coral,
+                        maze, walledCities];
+
   var startingRules = rulesOptions[0];
 
   var rulesService = {
@@ -34,15 +42,22 @@ gameOfLifeApp.service('rulesService', ['$log', 'gameDataService', function($log,
       B: {},
       S: {}
     };
-    var b = rulesString.split('/')[0].substring(1);
-    var s = rulesString.split('/')[1].substring(1);
-    for(var i=0; i < b.length; i++){
-      newRules.B[b.charAt(i)] = true;
-    }
-    for(var i=0; i < s.length; i++){
-      newRules.S[s.charAt(i)] = true;
-    }
+    var b = rulesString.split('/')[0];
+    subParse(b, newRules.B);
+    var s = rulesString.split('/')[1];
+    subParse(s, newRules.S);
     return newRules;
+  }
+
+  function subParse(subRulesString, rulesArr){
+    if(subRulesString.length==1){
+      // was simply 'S', w/ no numbers, for example
+      return;
+    }
+    var numbers = subRulesString.substring(1);
+    for(var i=0; i < numbers.length; i++){
+      rulesArr[numbers.charAt(i)] = true;
+    }
   }
 
   return rulesService;
