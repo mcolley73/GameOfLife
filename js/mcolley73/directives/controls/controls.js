@@ -1,10 +1,11 @@
-gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService', 'sampleWorldService', function($log, gameService, gameDataService, sampleWorldService){
+gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService', 'sampleWorldService', 'rulesService', function($log, gameService, gameDataService, sampleWorldService, rulesService){
 
-	var controller = ['$log', '$scope', 'gameService', 'gameDataService', 'sampleWorldService', function($log, $scope, gameService, gameDataService, sampleWorldService){
+	var controller = ['$log', '$scope', 'gameService', 'gameDataService', 'sampleWorldService', 'rulesService', function($log, $scope, gameService, gameDataService, sampleWorldService, rulesService){
 
 		$scope.gameService = gameService;
 		$scope.gameDataService = gameDataService;
 		$scope.sampleWorldService = sampleWorldService;
+		$scope.rulesService = rulesService;
 
 		$scope.startGame = function(){
 			gameService.startGame();
@@ -58,6 +59,10 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		}
 
 		$scope.gestationChange = function(){
+    		$scope.pauseAndResume();
+		}
+
+		$scope.rulesChange = function(){
     		$scope.pauseAndResume();
 		}
 

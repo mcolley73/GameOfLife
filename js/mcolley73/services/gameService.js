@@ -1,4 +1,4 @@
-gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', function($log, $interval, gameDataService){
+gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', 'rulesService', function($log, $interval, gameDataService, rulesService){
 
 	$log.info("gameService received gameDataService with world of size " + gameDataService.game.world.length + "x" + gameDataService.game.world[0].length);
 
@@ -162,24 +162,11 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', 'gameDataService', fu
 		var neighborCount = countNeighbors(row, column);
 
 		var shouldChange = 0;
-		if(world[row][column].alive){
-			if(neighborCount < 2){
-				// RULE 1
-				world[row][column].shouldChange = true;
-				shouldChange++;
-			} else if (neighborCount > 3){
-				// RULE 3
-				world[row][column].shouldChange = true;
-				shouldChange++;
-			} else{
-				// RULE 2
-			}
-		}else{
-			if(neighborCount==3){
-				// RULE 4
-				world[row][column].shouldChange = true;
-				shouldChange++;
-			}
+		var cell = world[row][column];
+
+		cell.shouldChange = rulesService.checkForChange(cell.alive, neighborCount);
+		if(cell.shouldChange){
+			shouldChange++;
 		}
 		return shouldChange;
 	}
