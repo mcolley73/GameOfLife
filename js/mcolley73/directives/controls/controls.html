@@ -12,6 +12,12 @@
 			class="{{gameDataService.game.running ? 'disabled-font' : ''}}">Preview</label>
 
 		<div class="variables-bar">
+			<span>ruleset</span>
+			<select ng-model="rulesService.effectiveRules"
+				ng-options="rulesOption.displayName for rulesOption in rulesService.rulesOptions" ng-change="rulesChange();">
+			</select>
+		</div>
+		<div class="variables-bar">
 			<span>gestation(ms)</span>
 			<select ng-model="gameDataService.game.gestation"
 				ng-options="gestationOption for gestationOption in gameDataService.gestationOptions" ng-change="gestationChange();">
@@ -22,12 +28,6 @@
 				ng-options="colorScheme.name for colorScheme in gameDataService.colorSchemeOptions">
 			</select>
 		</div>
-		<div class="variables-bar">
-			<span>ruleset</span>
-			<select ng-model="rulesService.effectiveRules"
-				ng-options="rulesOption.displayName for rulesOption in rulesService.rulesOptions" ng-change="rulesChange();">
-			</select>
-		</div>
 	</div>
 
 	<span class="spacer"></span>
@@ -36,7 +36,7 @@
 	<div class="generator-controls">
 		<button ng-click="newGame();" ng-disabled="gameDataService.game.running">Random</button>
 		<button ng-click="clear();" ng-disabled="gameDataService.game.running">Clear</button>
-		<button ng-click="generateJson();" ng-disabled="gameDataService.game.running">JSON</button>
+		<button ng-click="export();" ng-disabled="gameDataService.game.running">Export</button>
 		<div class="variables-bar">
 			<input type="text" class="dimension" ng-disabled="gameDataService.game.running" ng-model="gameDataService.game.oddsOfLife"></input><span class="{{gameDataService.game.running ? 'disabled-font' : ''}}"> odds of life</span>
 			<span class="spacer"></span>

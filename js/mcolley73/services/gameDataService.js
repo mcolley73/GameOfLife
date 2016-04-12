@@ -13,7 +13,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 	var showRecentDeath = false;
 
 	var jsonData = '';
-	var jsonViewerVisible = false;
+	var exportViewerVisible = false;
 
 	var colorSchemeOptions = [
 	    {"class":"greens","name":"Green"},
@@ -74,25 +74,25 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		}
 	}
 
-	function generateSampleWorldJson(){
-		var livingCells = [];
-		var sampleWorld = {
-			"name": "generated-"+new Date().getTime(),
-			"height": world.length,
-			"width": world[0].length,
-			"livingCells": livingCells
-		};
-		for(var i = 0; i < height; i++){
-			for(var j = 0; j < width; j++){
-				if(world[i][j].alive){
-					livingCells.push({"x":j, "y":i});
-				}
-			}
-		}
-		//$log.info(JSON.stringify(sampleWorld));
-
-		return JSON.stringify(sampleWorld);
-	}
+	// function generateSampleWorldJson(){
+	// 	var livingCells = [];
+	// 	var sampleWorld = {
+	// 		"name": "generated-"+new Date().getTime(),
+	// 		"height": world.length,
+	// 		"width": world[0].length,
+	// 		"livingCells": livingCells
+	// 	};
+	// 	for(var i = 0; i < height; i++){
+	// 		for(var j = 0; j < width; j++){
+	// 			if(world[i][j].alive){
+	// 				livingCells.push({"x":j, "y":i});
+	// 			}
+	// 		}
+	// 	}
+	// 	//$log.info(JSON.stringify(sampleWorld));
+	//
+	// 	return JSON.stringify(sampleWorld);
+	// }
 
 	function reset(){
 		for(var i = 0; i < height; i++){
@@ -136,7 +136,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		reset: reset,
 		clear: clear,
 		createSample: createSample,
-		generateSampleWorldJson: generateSampleWorldJson,
+//		generateSampleWorldJson: generateSampleWorldJson,
 		removePreviews: removePreviews,
 		gestationOptions: gestationOptions,
 
@@ -145,7 +145,7 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 		colorSchemeOptions: colorSchemeOptions,
 
 		jsonData: jsonData,
-		jsonViewerVisible: jsonViewerVisible
+		exportViewerVisible: exportViewerVisible
 	};
 
 }]);

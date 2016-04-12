@@ -42,10 +42,15 @@ gameOfLifeApp.service('rulesService', ['$log', 'gameDataService', function($log,
       B: {},
       S: {}
     };
+
     var b = rulesString.split('/')[0];
     subParse(b, newRules.B);
+    newRules.birthRules = b.length > 1 ? b.substring(1) : '';
+
     var s = rulesString.split('/')[1];
     subParse(s, newRules.S);
+    newRules.surviveRules = s.length > 1 ? s.substring(1) : ''
+    
     return newRules;
   }
 

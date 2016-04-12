@@ -1,0 +1,18 @@
+
+<div class="export-viewer-wrapper alive" ng-show="gameDataService.exportViewerVisible">
+
+  <div class="button-bar">
+    <button ng-click="copyText();">Copy</button>
+    <button ng-click="save();">Save</button><a id="savehref" ng-show="false">savehref</a>
+    <button ng-click="closeViewer();">Close</button>
+
+    <select style="margin-left: 10px;" ng-model="exportService.exportFormat" ng-change="updateFormat()">
+      <option value="">Select an output format</option>
+      <option value="life106">Life 1.06</option>
+      <option value="json">JSON</option>
+    </select>
+  </div>
+
+  <textarea class="export-viewer">{{exportService.exportData}}</textarea>
+
+</div>
