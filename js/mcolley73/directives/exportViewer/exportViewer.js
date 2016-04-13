@@ -24,7 +24,7 @@ gameOfLifeApp.directive('golExportViewer', ['$log', 'gameDataService', 'exportSe
 
     $scope.copyText = function(){
       try{
-        var copyTextarea = document.querySelector('.json-viewer');
+        var copyTextarea = document.querySelector('textarea.viewer');
         copyTextarea.select();
         document.execCommand('copy');
       }catch(err){
