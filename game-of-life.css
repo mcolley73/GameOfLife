@@ -107,6 +107,9 @@ body {
 .reds .alive {
 	background-color: #880000;
 }
+.reds .cell.alive{
+	color: #ddd;
+}
 .reds .dead {
 	background-color: #dddddd;
 }
@@ -175,6 +178,9 @@ body {
 .blues .alive {
 	background-color: #000088;
 }
+.blues .cell.alive{
+	color: #ddd;
+}
 .blues .dead {
 	background-color: #dddddd;
 }
@@ -209,6 +215,9 @@ body {
 .purples .alive {
 	background-color: #760BC9;
 }
+.purples .cell.alive{
+	color: #ddd;
+}
 .purples .dead {
 	background-color: #dddddd;
 }
@@ -242,6 +251,9 @@ body {
 }
 .rainbow .alive {
 	background-color: #C9170B;
+}
+.rainbow .cell.alive{
+	color: #ddd;
 }
 .rainbow .dead {
 	background-color: #dddddd;
@@ -315,10 +327,8 @@ body {
 	width: 40px;
 }
 
-.export-viewer-wrapper{
+.viewer-wrapper{
 	position:absolute;
-	right:45px;
-	top:35px;
 	padding:5px;
 	overflow-y:scroll;
 	border: 1px solid #777;
@@ -327,16 +337,46 @@ body {
 	-moz-box-shadow: -11px 9px 18px 0px rgba(0,0,0,0.75);
 	box-shadow: -11px 9px 18px 0px rgba(0,0,0,0.75);
 }
-.export-viewer{
-	height:inherit;
-	width:500px;
-	height:350px;
-}
-.export-viewer-wrapper .button-bar{
+.viewer-wrapper .button-bar{
 	display: block;
 	margin-top: 0px;
 	margin-left: 0px;
 }
+
+textarea.viewer, div.viewer{
+	height:inherit;
+	width:500px;
+	height:350px;
+}
+div.viewer{
+	background-color: white;
+	padding: 10px;
+	overflow-y: scroll;
+	font-size: 1.1em;
+}
+
+.export-viewer-wrapper{
+	right:45px;
+	top:35px;
+}
+.help-viewer-wrapper{
+	top:200px;
+	margin-left: auto;
+	margin-right: auto;
+	left:400px;
+}
+.help-viewer-wrapper .cell{
+	height: 24px;
+	width: 24px;
+}
+.viewer .mini-grid{
+	display:inline-block;
+	background-color:#bbb;
+}
+.mini-grid.indent{
+	margin-left: 25px;
+}
+
 
 .spacer{
 	width: 5px;

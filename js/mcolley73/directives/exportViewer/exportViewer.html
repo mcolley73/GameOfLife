@@ -1,5 +1,5 @@
 
-<div class="export-viewer-wrapper alive" ng-show="gameDataService.exportViewerVisible">
+<div class="viewer-wrapper export-viewer-wrapper alive" ng-show="gameDataService.exportViewerVisible">
 
   <div class="button-bar">
     <button ng-click="copyText();">Copy</button>
@@ -13,6 +13,6 @@
     </select>
   </div>
 
-  <textarea class="export-viewer">{{exportService.exportData}}</textarea>
+  <textarea class="viewer">{{exportService.exportData}}</textarea>
 
 </div>

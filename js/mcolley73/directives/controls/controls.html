@@ -16,6 +16,7 @@
 			<select ng-model="rulesService.effectiveRules"
 				ng-options="rulesOption.displayName for rulesOption in rulesService.rulesOptions" ng-change="rulesChange();">
 			</select>
+			<a ng-click="help.rulesVisible=true;" class="gol-fa-icon fa fa-question"></a>
 		</div>
 		<div class="variables-bar">
 			<span>gestation(ms)</span>
@@ -56,5 +57,76 @@
 	<span class="spacer"></span>
 	<div class="summary-controls">
 		<span>Generation {{gameDataService.game.generationCount}}, Running: {{gameDataService.game.running}}</span>
+	</div>
+</div>
+
+<div class="viewer-wrapper help-viewer-wrapper alive" ng-show="help.rulesVisible">
+	<div class="button-bar">
+		<button ng-click="help.rulesVisible=false;">Close</button>
+	</div>
+	<div class="viewer">
+		<h3>The Rules of Life</h3>
+		<p>The Rules of the Game Of Life can vary. All variations can be expressed
+			in simplified terms of the conditions required for Birth, and the conditions
+			required for Survival.</p>
+		<p>Whether these Birth or Survival conditions are met is determined by
+			looking at the 8 Cells surrounding a given Cell.</p>
+		<div class="mini-grid indent">
+			<div><div class="cell dead">1</div><div class="cell dead">2</div><div class="cell dead">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell dead">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell dead">6</div><div class="cell dead">7</div><div class="cell dead">8</div></div>
+		</div>
+		<p>The original Conway's Game Of Life, had 4 rules that could be reduced to
+			the more concise description of B3/S23. This 'B3' means that if exactly 3
+			of a Dead Cell's neighboring 8 cells are alive, that Dead Cell will flip
+			to being a Living Cell at the next tick of the clock.</p>
+		<div class="mini-grid indent">
+			<div><div class="cell alive">1</div><div class="cell dead">2</div><div class="cell dead">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell dead">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell alive">6</div><div class="cell alive">7</div><div class="cell dead">8</div></div>
+		</div>
+		<div style="display:inline-block;margin-bottom:20px;">&nbsp;...3 living neighbors results in Birth...&nbsp;</div>
+		<div class="mini-grid">
+			<div><div class="cell alive">1</div><div class="cell dead">2</div><div class="cell dead">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell alive">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell alive">6</div><div class="cell alive">7</div><div class="cell dead">8</div></div>
+		</div>
+		<p>Similarly, the 'S23' means that if <em>either</em> 2 <em>or</em> 3
+			of a Living Cell's neighboring 8 cells are alive, that Living Cell will stay
+			alive at the next tick. Both of the center cells below would Survive using
+			Conway's original ruleset.</p>
+		<div class="mini-grid indent">
+			<div><div class="cell dead">1</div><div class="cell dead">2</div><div class="cell alive">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell alive">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell dead">6</div><div class="cell alive">7</div><div class="cell dead">8</div></div>
+		</div>
+		<div style="display:inline-block;margin-bottom:20px;">2 - Survive!&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<div class="mini-grid">
+			<div><div class="cell alive">1</div><div class="cell dead">2</div><div class="cell dead">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell alive">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell alive">6</div><div class="cell alive">7</div><div class="cell dead">8</div></div>
+		</div>
+		<div style="display:inline-block;margin-bottom:20px;">3 - Survive!</div>
+		<p>But the wrong number of neighbors will prevent a Living Cell from surviving.</p>
+		<div class="mini-grid indent">
+			<div><div class="cell dead">1</div><div class="cell dead">2</div><div class="cell alive">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell alive">&nbsp;</div><div class="cell dead">5</div></div>
+			<div><div class="cell dead">6</div><div class="cell dead">7</div><div class="cell dead">8</div></div>
+		</div>
+		<div style="display:inline-block;margin-bottom:20px;">Only 1 - Die!&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<div class="mini-grid">
+			<div><div class="cell alive">1</div><div class="cell dead">2</div><div class="cell alive">3</div></div>
+			<div><div class="cell dead">4</div><div class="cell alive">&nbsp;</div><div class="cell alive">5</div></div>
+			<div><div class="cell alive">6</div><div class="cell dead">7</div><div class="cell dead">8</div></div>
+		</div>
+		<div style="display:inline-block;margin-bottom:20px;">4 is too many - Die!&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<p>All of the Cells are assessed for Birth or Survival independently
+		of whether their neighbors will change on the next tick. Once all of the appropriate changes
+		(Births and Deaths) have been determined, those changes are all applied at once. A new round
+		of assessments can then begin.</p>
+		<p>Experiment with different rulesets. Changing the Rules of Life has a profound
+		impact on the patterns and duration of the game. Try starting from the same pattern
+		with a few different Rulesets to appreciate this impact.</p>
+		<p>There is an excellent table of Rulesets available on the <a href="http://www.conwaylife.com/wiki/Cellular_automaton" target="_new">ConwayLife wiki</a>.</p>
 	</div>
 </div>

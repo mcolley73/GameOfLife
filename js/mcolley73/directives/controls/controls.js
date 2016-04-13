@@ -8,6 +8,10 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 		$scope.rulesService = rulesService;
 		$scope.exportService = exportService;
 
+		$scope.help = {
+			rulesVisible: false
+		};
+
 		$scope.startGame = function(){
 			gameService.startGame();
 			gameDataService.exportViewerVisible = false;
