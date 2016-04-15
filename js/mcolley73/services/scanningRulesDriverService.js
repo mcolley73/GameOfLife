@@ -3,58 +3,55 @@ gameOfLifeApp.service('scanningRulesDriverService', ['$log', '$rootScope', 'game
   /**
     This RulesDriver will scan every Cell in the Grid, Row by Row
       and Column by Column. It scans to identify necessary changes,
-      scans again to apply the changes, and will check neighbors
-      1 thru 8 for every cell.
+      storing them for possible reference to apply those changes,
+      and will check neighbors 1 thru 8 for every cell.
+
+    Cells that do not require change are stored in a separate array and
+      then dealt with as well (for Tracers).
   **/
 
   var scanningRulesDriverService = {
 
     runRules: function(){
-      var shouldChange = identifyChanges();
-  		applyChanges(shouldChange, true);
+      runRulesOrPreview(true);
     },
-
     runPreview: function(){
-      var shouldChange = identifyChanges();
-  		applyChanges(shouldChange, false);
+      runRulesOrPreview(false);
     }
 
   };
 
-	function identifyChanges(){
+  function runRulesOrPreview(commitChange){
+    var cellsNeedingChange = [];
+    var cellsWithoutChange = [];
+    identifyChanges(cellsNeedingChange, cellsWithoutChange);
+    applyChanges(cellsNeedingChange, cellsWithoutChange, commitChange);
+  }
+
+	function identifyChanges(cellsNeedingChange, cellsWithoutChange){
 		var world = gameDataService.game.world;
-		var shouldChange = 0;
 		for(var i = 0; i < world.length; i++){
 			for(var j = 0; j < world[i].length; j++){
-				shouldChange += checkRules(i,j);
+				checkRules(cellsNeedingChange,cellsWithoutChange,i,j);
 			}
 		}
-		return shouldChange;
 	}
 
-	function applyChanges(shouldChangeCount, commitChange){
+	function applyChanges(cellsNeedingChange,cellsWithoutChange,commitChange){
 		var world = gameDataService.game.world;
 		if(commitChange){
 			gameDataService.game.generationCount++;
 		}
-		if(shouldChangeCount==0){
+		if(cellsNeedingChange.length==0){
 			$log.info("No changes in generation " + gameDataService.game.generationCount + ".")
       $rootScope.$broadcast('gol.game.stop');
 		}else{
-			for(var i = 0; i < world.length; i++){
-				for(var j = 0; j < world[i].length; j++){
-					var cell = world[i][j];
-					applyCellChanges(commitChange, cell);
-				}
+			for(var i = 0; i < cellsNeedingChange.length; i++){
+				commitChangeOrPreview(commitChange, cellsNeedingChange[i]);
 			}
-		}
-	}
-
-	function applyCellChanges(commitChange, cell){
-		if(cell.shouldChange){
-			commitChangeOrPreview(commitChange, cell);
-		}else{
-			handleNoChange(cell);
+      for(var i = 0; i < cellsWithoutChange.length; i++){
+				handleNoChange(commitChange, cellsWithoutChange[i]);
+			}
 		}
 	}
 
@@ -72,24 +69,24 @@ gameOfLifeApp.service('scanningRulesDriverService', ['$log', '$rootScope', 'game
 		}
 	}
 
-	function handleNoChange(cell){
-		if(!cell.alive && cell.beenDead > -1){
+	function handleNoChange(commitChange, cell){
+		if(commitChange && !cell.alive && cell.beenDead > -1){
 			cell.beenDead++;
 		}
 	}
 
-  function checkRules(row, column){
+  function checkRules(cellsNeedingChange, cellsWithoutChange, row, column){
   	var world = gameDataService.game.world;
   	var neighborCount = countNeighbors(row, column);
 
-  	var shouldChange = 0;
   	var cell = world[row][column];
 
-  	cell.shouldChange = rulesService.checkForChange(cell.alive, neighborCount);
-  	if(cell.shouldChange){
-  		shouldChange++;
-  	}
-  	return shouldChange;
+    if(rulesService.checkForChange(cell.alive, neighborCount)){
+      cellsNeedingChange.push(cell);
+      cell.shouldChange = true;
+  	}else{
+      cellsWithoutChange.push(cell);
+    }
   }
 
   function countNeighbors(row, column){

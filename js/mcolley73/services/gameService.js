@@ -85,6 +85,7 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', '$rootScope', 'gameDa
 
 	function runRules(){
 		scanningRulesDriverService.runRules();
+		$rootScope.$broadcast('gol.tick');
 	}
 
 	function previewRules(){
