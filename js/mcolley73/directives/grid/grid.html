@@ -1,9 +1,9 @@
 
 <div class="gol-grid {{gameDataService.game.gridlines ? 'gridlines' : ''}}">
-	<div ng-repeat="row in gameDataService.game.world track by $index" class="{{$index > 0 && ($index+1) % 5 == 0 ? 'horiz-gridline' : ''}}">
-		<div ng-repeat="cell in row track by $index"
+	<div ng-repeat="row in ::gameDataService.game.world track by $index" class="{{$index > 0 && ($index+1) % 5 == 0 ? 'horiz-gridline' : ''}}">
+		<div ng-repeat="cell in ::row track by $index"
 			ng-click="toggleCell($event, cell)" ng-mouseover="mouseoverCell($event, cell)" ng-model="cell"
-			class="cell {{cell.alive ? 'alive' : 'dead'}} {{cell.preview ? 'preview' : ''}} {{beenDeadClass(cell)}} {{$index > 0 && $index % 5 == 0 ? 'vert-gridline' : ''}}">
+			class="cell {{dynamicCellClasses($index, cell)}}">
 			<div class="cell-value"></div>
 		</div>
 	</div>

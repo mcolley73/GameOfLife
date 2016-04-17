@@ -1,8 +1,15 @@
 <html ng-app="gameOfLifeApp">
 	<head>
+		<!-- external dependencies -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-touch.js"></script>
 
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+		<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- gol styles -->
 		<link rel="stylesheet" type="text/css" href="./game-of-life.css" />
 
 		<!-- app -->
@@ -20,6 +27,7 @@
 		<script src="./js/mcolley73/directives/grid/grid.js"></script>
 		<script src="./js/mcolley73/directives/controls/controls.js"></script>
 		<script src="./js/mcolley73/directives/exportViewer/exportViewer.js"></script>
+		<script src="./js/mcolley73/directives/glyph/glyph.js"></script>
 
 		<title>Colley's Game of Life</title>
 	</head>
@@ -31,6 +39,7 @@
 				<gol-grid></gol-grid>
 				<gol-controls></gol-controls>
 				<gol-export-viewer></gol-export-viewer>
+				<div class="glyph" gol-glyph></div>
 			</div>
 		</div>
 	</body>

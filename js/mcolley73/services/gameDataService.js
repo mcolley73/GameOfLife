@@ -1,6 +1,6 @@
 'use strict';
 
-gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function($log, sampleWorldService){
+gameOfLifeApp.factory('gameDataService', ['$log', '$rootScope', 'sampleWorldService', function($log, $rootScope, sampleWorldService){
 
 	var width = 60; // (queryStringService.getParam('width') || 20);
 	var height = 35; // (queryStringService.getParam('height') || 20);
@@ -55,8 +55,11 @@ gameOfLifeApp.factory('gameDataService', ['$log', 'sampleWorldService', function
 				arr[i][j] = {
 					alive: (andGenerate ? secretOfLife() : false),
 					shouldChange: false,
-					beenDead: -1
-				}
+					beenDead: -1,
+				};
+				$rootScope.$on('gol.glyph.dragstop', function (name, event, x, y) {
+					$log.info('drag stopped at ' + x + ',' + y);
+				})
 			}
 		}
 		return arr;

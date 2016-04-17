@@ -49,10 +49,19 @@ body {
 	width:12px;
 	height:12px;
 	margin: 1px;
+	z-index: 10;
 }
 .cell-value {
 	width: 100%;
 	text-align: center;
+}
+.drag-target{
+	border-top-color: green !important;
+	border-left-color: green !important;
+	border-top-style: solid !important;
+	border-left-style: solid !important;
+	border-left-width: 1px !important;
+	border-top-width: 1px !important;
 }
 
 .cell.gridlines {
@@ -375,6 +384,20 @@ div.viewer{
 }
 .mini-grid.indent{
 	margin-left: 25px;
+}
+
+
+.glyph{
+	position: relative;
+	display: inline-block;
+	background-color: #eee;
+	cursor: pointer;
+	opacity: .4;
+}
+.gol-grid .cell.glyph-hover{
+	border-top-width: 1px;
+	border-top-color: blue;
+	border-top-style: solid;
 }
 
 
