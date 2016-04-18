@@ -56,6 +56,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', '$rootScope', 'sampleWorldServ
 					alive: (andGenerate ? secretOfLife() : false),
 					shouldChange: false,
 					beenDead: -1,
+					row: i,
+					column: j
 				};
 				$rootScope.$on('gol.glyph.dragstop', function (name, event, x, y) {
 					$log.info('drag stopped at ' + x + ',' + y);

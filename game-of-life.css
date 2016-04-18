@@ -55,14 +55,6 @@ body {
 	width: 100%;
 	text-align: center;
 }
-.drag-target{
-	border-top-color: green !important;
-	border-left-color: green !important;
-	border-top-style: solid !important;
-	border-left-style: solid !important;
-	border-left-width: 1px !important;
-	border-top-width: 1px !important;
-}
 
 .cell.gridlines {
 	margin: 0px !important;
@@ -388,7 +380,9 @@ div.viewer{
 
 
 .glyph{
-	position: relative;
+	position: absolute;
+	top: 50px;
+	left: 50px;
 	display: inline-block;
 	background-color: #eee;
 	cursor: pointer;

@@ -1,8 +1,10 @@
 
 <div class="gol-grid {{gameDataService.game.gridlines ? 'gridlines' : ''}}">
-	<div ng-repeat="row in ::gameDataService.game.world track by $index" class="{{$index > 0 && ($index+1) % 5 == 0 ? 'horiz-gridline' : ''}}">
+	<div ng-repeat="row in ::gameDataService.game.world track by $index" class="row {{$index > 0 && ($index+1) % 5 == 0 ? 'horiz-gridline' : ''}}">
 		<div ng-repeat="cell in ::row track by $index"
-			ng-click="toggleCell($event, cell)" ng-mouseover="mouseoverCell($event, cell)" ng-model="cell"
+			ng-click="toggleCell($event, cell)"
+			ng-mouseover="mouseoverCell($event, cell)"
+			ng-model="cell"
 			class="cell {{dynamicCellClasses($index, cell)}}">
 			<div class="cell-value"></div>
 		</div>

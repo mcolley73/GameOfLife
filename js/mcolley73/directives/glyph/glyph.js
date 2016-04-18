@@ -17,55 +17,83 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
         startY = event.pageY - y;
         $document.on('mousemove', mousemove);
         $document.on('mouseup', mouseup);
-        //$rootScope.$broadcast('gol.glyph.dragstart');
         gameDataService.game.glyphDragging = true;
       });
 
       function mousemove(event) {
-        x = event.pageX - startX; // relative css positioning, not absolute
-        y = event.pageY - startY;
-        //$log.info("x:"+x);
-        //$log.info("y:"+y);
-        // $log.info("event.pageY:"+event.pageY);
-
-        var foundCell = getCellBelow(event);
-
-        if(foundCell != null){
-          var targetCellOffset = getElementOffset(foundCell);
-
-          var adjustmentX = event.pageX - targetCellOffset.left;
-          var adjustmentY = event.pageY - targetCellOffset.top;
-          $log.info("adjustmentX:"+adjustmentX + ", adjustmentY:"+adjustmentY);
-          element.css({
-            top: (targetCellOffset.top - startY) + 'px',
-            left: (targetCellOffset.left - startX) + 'px'
-          });
-
-          // This should be done by adjusting model of cell object
-          angular.element(foundCell).addClass("glyph-hover");
-        }else{
-          element.css({
-            left: x + 'px',
-            top: y + 'px'
-          });
-        }
+        x = event.pageX; // absolute css positioning
+        y = event.pageY;
+        element.css({
+          left: x + 'px',
+          top: y + 'px'
+        });
       }
 
       function mouseup() {
         $document.off('mousemove', mousemove);
         $document.off('mouseup', mouseup);
         gameDataService.game.glyphDragging = false;
-        //$rootScope.$broadcast('gol.glyph.dragstop', event, currentX, currentY);
+
+        var foundCell = getCellBelowPoint(x, y);
+        if(foundCell != null){
+          var targetCellOffset = getElementOffset(foundCell);
+          element.css({
+            top: (targetCellOffset.top) + 'px',
+            left: (targetCellOffset.left) + 'px'
+          });
+
+          var model = [];
+          model[0] = [{alive:false}, {alive:true}, {alive:false}];
+          model[1] = [{alive:true}, {alive:false}, {alive:false}];
+          model[2] = [{alive:true}, {alive:true}, {alive:true}];
+          applyGlyph(foundCell, model);
+          element.css({
+            top: '50px',
+            left: '50px'
+          });
+        }else{
+          element.css({
+            top: '50px',
+            left: '50px'
+          });
+        }
+      }
+
+      function applyGlyph(upperLeftCell, model){
+        // Find the model associated with the targeted cell, modify and apply
+        var angElem = angular.element(upperLeftCell);
+        var scope = angElem.scope();
+        scope.cell.glyphHover = true;
+        scope.$apply();
+        $log.info(scope.cell);
+
+        var row = scope.cell.row;
+        var column = scope.cell.column;
+        for(var i = 0; i < model.length; i++){
+          for(var j = 0; j < model[i].length; j++){
+            gameDataService.game.world[row + i][column + j].alive = model[i][j].alive;
+          }
+        }
       }
 
       function getCellBelow(event){
+        return getCellBelowPoint(event.pageX, event.pageY);
+      }
+
+      function getCellBelowPoint(pointX, pointY){
         var foundCell = null;
-        var pointElements = document.elementsFromPoint(event.pageX, event.pageY);
+        var pointElements = document.elementsFromPoint(pointX, pointY);
+        var foundRow = false;
         for(var i = 0; foundCell==null && i < pointElements.length; i++){
           var targetCell = angular.element(pointElements[i]);
           if(targetCell.hasClass("cell")){
             foundCell = pointElements[i];
+          }else if(targetCell.hasClass("row")){
+            foundRow = true;
           }
+        }
+        if(foundRow){
+          return getCellBelowPoint(pointX + 3, pointY + 3);
         }
         return foundCell;
       }
