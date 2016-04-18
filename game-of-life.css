@@ -388,11 +388,6 @@ div.viewer{
 	cursor: pointer;
 	opacity: .4;
 }
-.gol-grid .cell.glyph-hover{
-	border-top-width: 1px;
-	border-top-color: blue;
-	border-top-style: solid;
-}
 
 
 .spacer{

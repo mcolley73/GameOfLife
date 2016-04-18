@@ -24,7 +24,7 @@ gameOfLifeApp.directive('golGrid', ['$log', 'gameDataService', function($log, ga
 			classes += (cell.alive) ? 'alive ' : 'dead ';
 			classes += (cell.preview) ? 'preview ' : ' ';
 			classes += beenDeadClass(cell);
-			classes += glyphHoverClass(cell);
+			//classes += glyphHoverClass(cell);
 			classes += ($index > 0 && $index % 5 == 0) ? 'vert-gridline ' : ' ';
 			return classes;
 		}

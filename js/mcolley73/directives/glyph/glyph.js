@@ -63,9 +63,6 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
         // Find the model associated with the targeted cell, modify and apply
         var angElem = angular.element(upperLeftCell);
         var scope = angElem.scope();
-        scope.cell.glyphHover = true;
-        scope.$apply();
-        $log.info(scope.cell);
 
         var row = scope.cell.row;
         var column = scope.cell.column;
@@ -74,6 +71,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
             gameDataService.game.world[row + i][column + j].alive = model[i][j].alive;
           }
         }
+        $rootScope.$apply();
       }
 
       function getCellBelow(event){
