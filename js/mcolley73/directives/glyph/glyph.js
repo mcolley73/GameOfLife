@@ -62,10 +62,6 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
             left: (targetCellOffset.left) + 'px'
           });
 
-          // var model = [];
-          // model[0] = [{alive:false}, {alive:true}, {alive:false}];
-          // model[1] = [{alive:true}, {alive:false}, {alive:false}];
-          // model[2] = [{alive:true}, {alive:true}, {alive:true}];
           applyGlyph(foundCell, scope.glypharray);
           clone.detach();
         }else{

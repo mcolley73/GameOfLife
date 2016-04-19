@@ -1,7 +1,4 @@
 
 <div class="gol-palette" ng-show="true">
-  <gol-glyph glypharray="glyphArray1" class="glyph"></gol-glyph>
-  <gol-glyph glypharray="glyphArray2" class="glyph"></gol-glyph>
-  <gol-glyph glypharray="glyphArray3" class="glyph"></gol-glyph>
-  <gol-glyph glypharray="glyphArray4" class="glyph"></gol-glyph>
+  <gol-glyph ng-repeat="glyphArray in glyphArrays" glypharray="glyphArray" class="glyph"></gol-glyph>
 </div>
