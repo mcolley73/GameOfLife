@@ -9,12 +9,16 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
       var startX = 0, startY = 0, x = 0, y = 0;
       var currentX = 0;
       var currentY = 0;
+      var clone = null;
 
       element.on('mousedown', function(event) {
         // Prevent default dragging of selected content
         event.preventDefault();
         startX = event.pageX - x;
         startY = event.pageY - y;
+
+        cloneGlyphOntoBody(event);
+
         $document.on('mousemove', mousemove);
         $document.on('mouseup', mouseup);
         gameDataService.game.glyphDragging = true;
@@ -23,7 +27,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
       function mousemove(event) {
         x = event.pageX; // absolute css positioning
         y = event.pageY;
-        element.css({
+        clone.css({
           left: x + 'px',
           top: y + 'px'
         });
@@ -37,7 +41,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
         var foundCell = getCellBelowPoint(x, y);
         if(foundCell != null){
           var targetCellOffset = getElementOffset(foundCell);
-          element.css({
+          clone.css({
             top: (targetCellOffset.top) + 'px',
             left: (targetCellOffset.left) + 'px'
           });
@@ -47,16 +51,23 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
           model[1] = [{alive:true}, {alive:false}, {alive:false}];
           model[2] = [{alive:true}, {alive:true}, {alive:true}];
           applyGlyph(foundCell, model);
-          element.css({
-            top: '50px',
-            left: '50px'
-          });
+          clone.detach();
         }else{
-          element.css({
-            top: '50px',
-            left: '50px'
-          });
+          clone.detach();
         }
+      }
+
+      function cloneGlyphOntoBody(event){
+        clone = element.clone();
+        clone.addClass("cloned");
+        var offset = getElementOffset(clone[0]);
+        clone.css({
+          float: 'none',
+          position: 'absolute',
+          left: event.pageX + 'px',
+          top: event.pageY + 'px'
+        });
+        $document.find("body").append(clone);
       }
 
       function applyGlyph(upperLeftCell, model){
@@ -96,9 +107,9 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
         return foundCell;
       }
 
-      function getElementOffset(element){
+      function getElementOffset(elementNeeded){
         var de = document.documentElement;
-        var box = element.getBoundingClientRect();
+        var box = elementNeeded.getBoundingClientRect();
         var top = box.top + window.pageYOffset - de.clientTop;
         var left = box.left + window.pageXOffset - de.clientLeft;
         return { top: top, left: left };

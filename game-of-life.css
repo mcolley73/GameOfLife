@@ -379,8 +379,21 @@ div.viewer{
 }
 
 
+
+.gol-palette{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	background-color: none;
+	top: 0px;
+	left: 10px;
+	height: 400px;
+	width: 150px;
+	border: 1px solid blue;
+}
 .glyph{
 	position: absolute;
+	float: left;
 	top: 50px;
 	left: 50px;
 	display: inline-block;

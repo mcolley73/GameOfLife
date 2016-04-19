@@ -28,18 +28,19 @@
 		<script src="./js/mcolley73/directives/controls/controls.js"></script>
 		<script src="./js/mcolley73/directives/exportViewer/exportViewer.js"></script>
 		<script src="./js/mcolley73/directives/glyph/glyph.js"></script>
+		<script src="./js/mcolley73/directives/palette/palette.js"></script>
 
 		<title>Colley's Game of Life</title>
 	</head>
 
-	<body ng-controller="gameController" >
+	<body ng-controller="gameController" class="{{gameDataService.colorScheme.class}}">
 		<div class="gol-content">
-			<div class="gol-wrapper {{gameDataService.colorScheme.class}}">
+			<div class="gol-wrapper">
 				<h3 class="gol-title">Colley's Game of {{'life' + '!'}}&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_new">(see Conway's)</a></h3>
 				<gol-grid></gol-grid>
+				<gol-palette></gol-palette>
 				<gol-controls></gol-controls>
 				<gol-export-viewer></gol-export-viewer>
-				<div class="glyph" gol-glyph></div>
 			</div>
 		</div>
 	</body>
