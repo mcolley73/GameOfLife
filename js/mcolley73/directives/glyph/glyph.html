@@ -1,5 +1,9 @@
 <div>
-  <div><div class="cell dead"></div><div class="cell alive"></div><div class="cell dead"></div></div>
-  <div><div class="cell alive"></div><div class="cell dead"></div><div class="cell dead"></div></div>
-  <div><div class="cell alive"></div><div class="cell alive"></div><div class="cell alive"></div></div>
+  <div ng-repeat="row in glypharray">
+    <div ng-repeat="cell in ::row track by $index"
+      ng-model="cell"
+      class="cell {{dynamicGlyphClasses($index, cell)}}" >
+      <div class="cell-value"></div>
+    </div>
+  </div>
 </div>

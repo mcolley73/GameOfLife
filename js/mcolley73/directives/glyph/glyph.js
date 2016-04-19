@@ -1,8 +1,24 @@
 gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDataService', function($log, $document, $rootScope, gameDataService) {
 
+  var controller = ['$scope', '$log', 'gameDataService', function($scope, $log, gameDataService){
+
+    $scope.dynamicGlyphClasses = function($index, cell){
+			var classes = "";
+			classes += (cell.alive) ? 'alive ' : 'dead ';
+			return classes;
+		}
+
+  }];
+
   return {
 
+    controller: controller,
+
     templateUrl: '/GameOfLife/js/mcolley73/directives/glyph/glyph.html',
+
+    scope: {
+      glypharray: '='
+    },
 
     link: function(scope, element, attr) {
 
@@ -46,11 +62,11 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
             left: (targetCellOffset.left) + 'px'
           });
 
-          var model = [];
-          model[0] = [{alive:false}, {alive:true}, {alive:false}];
-          model[1] = [{alive:true}, {alive:false}, {alive:false}];
-          model[2] = [{alive:true}, {alive:true}, {alive:true}];
-          applyGlyph(foundCell, model);
+          // var model = [];
+          // model[0] = [{alive:false}, {alive:true}, {alive:false}];
+          // model[1] = [{alive:true}, {alive:false}, {alive:false}];
+          // model[2] = [{alive:true}, {alive:true}, {alive:true}];
+          applyGlyph(foundCell, scope.glypharray);
           clone.detach();
         }else{
           clone.detach();
