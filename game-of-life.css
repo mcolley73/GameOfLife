@@ -386,6 +386,7 @@ div.viewer{
 	display: inline-block;
 	vertical-align: top;
 	background-color: none;
+	overflow: scroll;
 	top: 0px;
 	left: 10px;
 	height: 400px;
