@@ -20,6 +20,7 @@ body {
 	font-weight: bold;
 	margin: 10px 0px 10px 5px;
 	text-align: left;
+	font-family: sans-serif;
 }
 
 .gol-grid{
@@ -389,12 +390,17 @@ div.viewer{
 	left: 10px;
 	height: 400px;
 	width: 150px;
-	border: 1px solid blue;
+	border-radius: 5px;
+	border:1px solid #ccc;
+}
+.glyph-name{
+	font-size:.9em;
+	font-family: sans-serif;
+	width: 100%;
+	text-align: center;
 }
 .glyph{
 	position: relative;
-	float: left;
-	top: 50px;
 	left: 50px;
 	display: inline-block;
 	background-color: #eee;
@@ -404,6 +410,10 @@ div.viewer{
 .gol-palette .glyph{
 	clear: both;
 	margin-bottom: 10px;
+}
+.glyph.dragging{
+	background-color: #777;
+	border: 1px solid #444;
 }
 
 .spacer{

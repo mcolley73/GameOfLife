@@ -5,6 +5,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
     $scope.dynamicGlyphClasses = function($index, cell){
 			var classes = "";
 			classes += (cell.alive) ? 'alive ' : 'dead ';
+      classes += "glyphcell";
 			return classes;
 		}
 
@@ -17,7 +18,8 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
     templateUrl: '/GameOfLife/js/mcolley73/directives/glyph/glyph.html',
 
     scope: {
-      glypharray: '='
+      glypharray: '=',
+      glyphname: '@glyphname'
     },
 
     link: function(scope, element, attr) {
@@ -79,6 +81,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
           left: event.pageX + 'px',
           top: event.pageY + 'px'
         });
+        clone.addClass("dragging");
         $document.find("body").append(clone);
       }
 
@@ -107,7 +110,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
         var foundRow = false;
         for(var i = 0; foundCell==null && i < pointElements.length; i++){
           var targetCell = angular.element(pointElements[i]);
-          if(targetCell.hasClass("cell")){
+          if(targetCell.hasClass("cell") && !targetCell.hasClass("glyphcell")){
             foundCell = pointElements[i];
           }else if(targetCell.hasClass("row")){
             foundRow = true;

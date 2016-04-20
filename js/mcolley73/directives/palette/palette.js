@@ -11,7 +11,10 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     gArray[0].push({alive:true});
     gArray[1].push({alive:false});
     gArray[1].push({alive:false});
-    glyphArrays.push(gArray);
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'simple block 1'
+    });
 
     gArray = [];
     gArray.push([]);
@@ -26,8 +29,10 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     gArray[2].push({alive:true});
     gArray[2].push({alive:true});
     gArray[2].push({alive:true});
-    glyphArrays.push(gArray);
-
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'Southwest Spaceship'
+    });
 
     gArray = [];
     gArray.push([]);
@@ -36,7 +41,10 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     gArray[0].push({alive:false});
     gArray[1].push({alive:true});
     gArray[1].push({alive:false});
-    glyphArrays.push(gArray);
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'simple block 2'
+    });
 
     gArray = [];
     gArray.push([]);
@@ -51,7 +59,10 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     gArray[2].push({alive:true});
     gArray[2].push({alive:true});
     gArray[2].push({alive:true});
-    glyphArrays.push(gArray);
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'Southeast Spaceship'
+    });
 
     gArray = [];
     gArray.push([]);
@@ -66,7 +77,28 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     gArray[2].push({alive:false});
     gArray[2].push({alive:true});
     gArray[2].push({alive:false});
-    glyphArrays.push(gArray);
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'Vertical Blinker'
+    });
+
+    gArray = [];
+    gArray.push([]);
+    gArray.push([]);
+    gArray.push([]);
+    gArray[0].push({alive:false});
+    gArray[0].push({alive:false});
+    gArray[0].push({alive:false});
+    gArray[1].push({alive:true});
+    gArray[1].push({alive:true});
+    gArray[1].push({alive:true});
+    gArray[2].push({alive:false});
+    gArray[2].push({alive:false});
+    gArray[2].push({alive:false});
+    glyphArrays.push({
+      glyph: gArray,
+      name: 'Horizontal Blinker'
+    });
 
     $scope.glyphArrays = glyphArrays;
 
