@@ -1,9 +1,10 @@
-gameOfLifeApp.service('gameService', ['$log', '$interval', '$rootScope', 'gameDataService', 'scanningRulesDriverService', 'rulesService', function($log, $interval, $rootScope, gameDataService, scanningRulesDriverService, rulesService){
+gameOfLifeApp.service('gameService', ['$log', '$interval', '$rootScope', 'gameDataService', 'scanningRulesDriverService', 'rulesService', 'exportService', function($log, $interval, $rootScope, gameDataService, scanningRulesDriverService, rulesService, exportService){
 
 	$log.info("gameService received gameDataService with world of size " + gameDataService.game.world.length + "x" + gameDataService.game.world[0].length);
 
 	var gameService = {
 		interval: null,
+		snapshot: null,
 
 		isRunning: function() {
 			return gameDataService.game.running;
@@ -77,8 +78,16 @@ gameOfLifeApp.service('gameService', ['$log', '$interval', '$rootScope', 'gameDa
 			gameDataService.createSample(sample);
 		},
 
-		generateJson: function() {
-			return gameDataService.generateSampleWorldJson();
+		createSnapshot: function(){
+			this.snapshot = {
+				livingCells: exportService.getLivingCells(gameDataService.game.world)
+			};
+			gameDataService.hasSnapshot = true;
+		},
+
+		revertToSnapshot: function(){
+			gameDataService.createSample(this.snapshot);
+			gameDataService.hasSnapshot = false;
 		}
 
 	};

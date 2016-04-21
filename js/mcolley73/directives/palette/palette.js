@@ -1,6 +1,8 @@
-gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log, gameDataService){
+gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', 'gameService', function($scope, $log, gameDataService, gameService){
 
-  var controller = ['$scope', '$log', 'gameDataService', function($scope, $log, gameDataService){
+  var controller = ['$scope', '$log', 'gameDataService', 'gameService', function($scope, $log, gameDataService, gameService){
+
+    $scope.gameDataService = gameDataService;
 
     var glyphArrays = [];
 
@@ -131,6 +133,17 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', function($log,
     });
 
     $scope.glyphArrays = glyphArrays;
+
+    $scope.revert = function(){
+      gameService.revertToSnapshot();
+    };
+
+    $scope.undoGlyphIconClass = function(){
+      if(!gameDataService.hasSnapshot){
+        return 'disabled-font';
+      }
+      return '';
+    };
 
   }];
 

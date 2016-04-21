@@ -1,6 +1,6 @@
-gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDataService', function($log, $document, $rootScope, gameDataService) {
+gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDataService', 'gameService', function($log, $document, $rootScope, gameDataService, gameService) {
 
-  var controller = ['$scope', '$log', 'gameDataService', function($scope, $log, gameDataService){
+  var controller = ['$scope', '$log', 'gameDataService', 'gameService', function($scope, $log, gameDataService, gameService){
 
     $scope.dynamicGlyphClasses = function($index, cell){
 			var classes = "";
@@ -64,6 +64,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
             left: (targetCellOffset.left) + 'px'
           });
 
+          gameService.createSnapshot();
           applyGlyph(foundCell, scope.glypharray);
           clone.detach();
         }else{

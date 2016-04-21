@@ -1,10 +1,16 @@
 
 <div class="gol-palette" ng-show="true">
-  <div ng-repeat="glyphArray in glyphArrays">
-    <div class="glyph-name">{{glyphArray.name}}</div>
-    <gol-glyph
-      glypharray="glyphArray.glyph"
-      glyphname="{{glyphArray.name}}"
-      class="glyph"></gol-glyph>
+  <div class="glyph-palette-label">Glyph Palette</div>
+  <hr />
+  <div class="palette-glyphs">
+    <div ng-repeat="glyphArray in glyphArrays">
+      <div class="glyph-name">{{glyphArray.name}}</div>
+      <gol-glyph
+        glypharray="glyphArray.glyph"
+        glyphname="{{glyphArray.name}}"
+        class="glyph"></gol-glyph>
+    </div>
   </div>
+  <hr />
+  <a ng-click="revert();" class="gol-fa-icon fa fa-undo palette-undo {{undoGlyphIconClass()}}"></a>
 </div>

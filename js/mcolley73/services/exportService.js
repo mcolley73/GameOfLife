@@ -53,6 +53,10 @@ gameOfLifeApp.factory('exportService', ['$log', 'sampleWorldService', function($
         lif1_06txt += livingCells[i].x + " " + livingCells[i].y + "\n";
       }
   		return lif1_06txt;
+    },
+
+    getLivingCells: function(world){
+      return getLivingCells(world);
     }
 
   };

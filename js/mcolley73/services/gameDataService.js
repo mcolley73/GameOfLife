@@ -15,6 +15,8 @@ gameOfLifeApp.factory('gameDataService', ['$log', '$rootScope', 'sampleWorldServ
 	var jsonData = '';
 	var exportViewerVisible = false;
 
+	var hasSnapshot = false;
+
 	var colorSchemeOptions = [
 	    {"class":"greens","name":"Green"},
 	    {"class":"greens tracers","name":"Green Tracers"},
@@ -150,7 +152,10 @@ gameOfLifeApp.factory('gameDataService', ['$log', '$rootScope', 'sampleWorldServ
 		colorSchemeOptions: colorSchemeOptions,
 
 		jsonData: jsonData,
-		exportViewerVisible: exportViewerVisible
+		exportViewerVisible: exportViewerVisible,
+
+		hasSnapshot: hasSnapshot
+
 	};
 
 }]);

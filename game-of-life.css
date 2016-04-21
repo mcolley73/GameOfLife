@@ -6,6 +6,10 @@ body {
 	margin: 10px;
 	font-size: 14px;
 }
+hr {
+	margin: 0px;
+	padding: 0px;
+}
 
 .gol-content{
 	margin: auto;
@@ -394,8 +398,28 @@ div.viewer{
 	border-radius: 5px;
 	border:1px solid #ccc;
 }
+.glyph-palette-label{
+	font-family: sans-serif;
+	font-size: .9em;
+	margin-top: 3px;
+	margin-left: 5px;
+	margin-bottom: 3px;
+	display: inline-block;
+	position: relative;
+}
+.palette-glyphs{
+	overflow: scroll;
+	height: 83%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.palette-undo{
+	margin-top: 3px;
+	margin-right: 5px;
+	float: right;
+}
 .glyph-name{
-	font-size:.9em;
+	font-size:.8em;
 	font-family: sans-serif;
 	width: 100%;
 	text-align: center;
@@ -408,7 +432,7 @@ div.viewer{
 	cursor: pointer;
 	opacity: .4;
 }
-.gol-palette .glyph{
+.palette-glyphs .glyph{
 	clear: both;
 	margin-bottom: 10px;
 }
