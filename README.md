@@ -11,6 +11,7 @@
 * Click and Drag to spawn life with the stroke of a mouse
 * Toggle gridlines to ease freehand drawing
 * Load sample worlds or generate JSON for more sample worlds
+* Drag various glyphs from the palette into your world
 * Click to toggle individual cells
 
 ### Visual Features
