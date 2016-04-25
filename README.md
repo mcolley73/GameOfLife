@@ -24,3 +24,5 @@
 * Save your LIF or JSON straight to your Downloads folder
 
 [LIVE DEMO HERE](http://mcolley73.github.io/GameOfLife/)
+
+[RUN UNIT TESTS HERE](http://mcolley73.github.io/GameOfLife/test/specRunner.html)
