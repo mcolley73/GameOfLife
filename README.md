@@ -19,9 +19,9 @@
 * Use color schemes that show historic generation 'tracers'
 
 ### Export Worlds
-* View your game in LIF or JSON format
-* Copy LIF or JSON to your clipboard
-* Save your LIF or JSON straight to your Downloads folder
+* View your game in LIF, RLE or JSON format
+* Copy LIF, RLE or JSON to your clipboard
+* Save your LIF, RLE or JSON straight to your Downloads folder
 
 [LIVE DEMO HERE](http://mcolley73.github.io/GameOfLife/)
 
