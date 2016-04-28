@@ -150,7 +150,7 @@ gameOfLifeApp.directive('golPalette', ['$log', 'gameDataService', 'gameService',
   return {
 		controller: controller,
 		model: '=',
-		templateUrl: '/GameOfLife/js/mcolley73/directives/palette/palette.html'
+		templateUrl: '/GameOfLife/app/js/gol/directives/palette/palette.html'
 	};
 
 }]);

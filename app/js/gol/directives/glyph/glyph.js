@@ -15,7 +15,7 @@ gameOfLifeApp.directive('golGlyph', ['$log', '$document', '$rootScope', 'gameDat
 
     controller: controller,
 
-    templateUrl: '/GameOfLife/js/mcolley73/directives/glyph/glyph.html',
+    templateUrl: '/GameOfLife/app/js/gol/directives/glyph/glyph.html',
 
     scope: {
       glypharray: '=',

@@ -93,7 +93,7 @@ gameOfLifeApp.directive('golControls', ['$log', 'gameService', 'gameDataService'
 	return {
 		controller: controller,
 		model: '=',
-		templateUrl: '/GameOfLife/js/mcolley73/directives/controls/controls.html'
+		templateUrl: '/GameOfLife/app/js/gol/directives/controls/controls.html'
 	};
 
 }]);

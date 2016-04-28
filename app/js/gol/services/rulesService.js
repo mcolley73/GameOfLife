@@ -50,7 +50,7 @@ gameOfLifeApp.service('rulesService', ['$log', 'gameDataService', function($log,
     var s = rulesString.split('/')[1];
     subParse(s, newRules.S);
     newRules.surviveRules = s.length > 1 ? s.substring(1) : ''
-    
+
     return newRules;
   }
 

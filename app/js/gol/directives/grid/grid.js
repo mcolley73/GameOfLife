@@ -50,7 +50,7 @@ gameOfLifeApp.directive('golGrid', ['$log', 'gameDataService', function($log, ga
 	return {
 		controller: controller,
 		model: '=',
-		templateUrl: '/GameOfLife/js/mcolley73/directives/grid/grid.html'
+		templateUrl: '/GameOfLife/app/js/gol/directives/grid/grid.html'
 	};
 
 }]);

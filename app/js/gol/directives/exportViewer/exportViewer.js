@@ -41,7 +41,7 @@ gameOfLifeApp.directive('golExportViewer', ['$log', 'gameDataService', 'exportSe
 	return {
 		controller: controller,
 		model: '=',
-		templateUrl: '/GameOfLife/js/mcolley73/directives/exportViewer/exportViewer.html'
+		templateUrl: '/GameOfLife/app/js/gol/directives/exportViewer/exportViewer.html'
 	};
 
 }]);
