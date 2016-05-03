@@ -20,6 +20,7 @@ hr {
 	display: inline-block;
 	padding: 5px;
 	text-align: left;
+	white-space: nowrap;
 }
 .gol-title{
 	font-weight: bold;
@@ -31,6 +32,9 @@ hr {
 .gol-grid{
 	background-color: #bbb;
 	display: inline-block;
+	white-space: nowrap;
+}
+.row{
 }
 
 .vert-gridline{
@@ -57,6 +61,7 @@ hr {
 	margin: 1px;
 	z-index: 10;
 }
+
 .cell-value {
 	width: 100%;
 	text-align: center;
@@ -452,4 +457,43 @@ div.viewer{
 .disabled-font{
 	color: #ccc !important;
 	cursor: default;
+}
+
+@media screen and (max-width:850px){
+	body, button, .player-controls, select, input {
+		font-size: 11px;
+	}
+	.cell {
+			width: 9px;
+			height: 9px;
+	}
+	.gol-palette{
+		display: none;
+	}
+	.summary-controls{
+		display: block;
+		left: 0px;
+		margin-top: 0px;
+	}
+	.player-controls{
+		margin-bottom: 10px;
+	}
+}
+@media screen and (max-width:600px){
+	body, button, .player-controls, select, input {
+		font-size: 9px;
+	}
+	.cell {
+			width: 6px;
+			height: 6px;
+	}
+	.gol-palette{
+		display: none;
+	}
+	.generator-controls{
+		display: block;
+	}
+	.summary-controls{
+		padding-top: 10px;
+	}
 }
